@@ -1,9 +1,6 @@
-# Mensagens-ao-Congresso-Nacional-2023-2026-
-Pipeline reprodutível para categorizar semanticamente a agenda de governo nas Mensagens ao Congresso Nacional (2023–2026). Classificação por TF-IDF e SVM, otimização por algoritmo genético validada estatisticamente, e estudo diacrônico dos temas ao longo do mandato.
-
 # Categorização semântica da agenda governamental — Mensagens ao Congresso (2023–2026)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/<usuario>/<repositorio>/blob/main/AG_RafolsFerdinand_Otimizacao_Hiperparametros_v9_final.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/17of80ZR1Bf6W8Ex6pCvxribkQLHgTGK6)
 
 Pipeline reprodutível de **categorização semântica supervisionada** de parágrafos de documentos governamentais, demonstrado sobre as **Mensagens ao Congresso Nacional (2023–2026)** — instrumentos constitucionais (Art. 84 da CF) que expressam a *agenda de governo* do Executivo, e não retórica pessoal.
 
