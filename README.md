@@ -1,6 +1,6 @@
 # Categorização semântica da agenda governamental — Mensagens ao Congresso (2023–2026)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/17of80ZR1Bf6W8Ex6pCvxribkQLHgTGK6)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ferdinandrafols/Mensagens-ao-Congresso-Nacional-2023-2026-/blob/main/AG_RafolsFerdinand_Otimizacao_Hiperparametros_v9_final.ipynb)
 
 Pipeline reprodutível de **categorização semântica supervisionada** de parágrafos de documentos governamentais, demonstrado sobre as **Mensagens ao Congresso Nacional (2023–2026)** — instrumentos constitucionais (Art. 84 da CF) que expressam a *agenda de governo* do Executivo, e não retórica pessoal.
 
@@ -37,7 +37,15 @@ Antes de rodar:
 
 ## Dados
 
-O corpus provém de quatro documentos públicos — as Mensagens ao Congresso Nacional de 2023 a 2026 —, integralmente recuperáveis a partir de suas fontes oficiais. Os artefatos intermediários e finais (corpus rotulado, métricas por classe, matriz de confusão, proporções diacrônicas e os vetores das 30 execuções) são exportados em formato aberto pelo próprio notebook.
+O corpus provém de quatro documentos públicos — as Mensagens ao Congresso Nacional de 2023 a 2026 —, integralmente recuperáveis a partir de suas fontes oficiais.
+
+**Fontes oficiais (PDF):**
+
+- 2023: https://www.gov.br/planalto/pt-br/acesso-a-informacao/acoes-e-programas/governanca/mensagem-ao-congresso-nacional/MensagemaoCongressoNacional2023.pdf
+- 2024: https://www.gov.br/planalto/pt-br/acesso-a-informacao/acoes-e-programas/governanca/mensagem-ao-congresso-nacional/mensagemaocongressonacional2024_vf.pdf
+- 2025: https://www.gov.br/planalto/pt-br/acesso-a-informacao/acoes-e-programas/governanca/mensagem-ao-congresso-nacional/mcn2025digitalv1.pdf
+- 2026: https://www.gov.br/casacivil/pt-br/.arquivos/mensagem-ao-congresso-nacional-2026.pdf
+ Os artefatos intermediários e finais (corpus rotulado, métricas por classe, matriz de confusão, proporções diacrônicas e os vetores das 30 execuções) são exportados em formato aberto pelo próprio notebook.
 
 > **Nota sobre supervisão fraca:** como os rótulos de treino e de avaliação derivam de uma mesma fonte lexical, as métricas devem ser lidas como um *limite inferior de consistência*; sua validação plena requer um conjunto-ouro validado por anotação humana, em construção.
 
