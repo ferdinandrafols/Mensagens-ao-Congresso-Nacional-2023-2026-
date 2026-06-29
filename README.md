@@ -6,7 +6,18 @@ Evidência computacional reprodutível do artigo **"Um pipeline reprodutível pa
 
 O trabalho propõe um pipeline auditável de classificação supervisionada de parágrafos — representação por TF-IDF, classificadores clássicos (Regressão Logística, SVM linear, Random Forest) e otimização de hiperparâmetros por Algoritmo Genético (AG) — e o demonstra sobre a **agenda governamental** expressa nas Mensagens ao Congresso Nacional do mandato 2023–2026, rotuladas em nove classes temáticas.
 
-> Pesquisa de mestrado no PPGEELT/UFU (EL142A, 2026/1). Discente: Ferdinand Rafols. Orientação: Prof. Dr. Márcio José da Cunha. Disciplina de Algoritmos Genéticos: Prof. Dr. Keiji Yamanaka. Este notebook é um dos vértices de uma pesquisa que compara arquiteturas cognitivas governadas por linguagem (A1 vs. A2).
+> Pesquisa de mestrado no PPGEELT/UFU (EL142A, 2026/1). Discente: Ferdinand Rafols. Orientação: Prof. Dr. Márcio José da Cunha. Este notebook é um dos vértices de uma pesquisa que, sobre um corpus comum, atravessa quatro disciplinas e culmina na comparação entre arquiteturas cognitivas governadas por linguagem (baseline × A1 × A2).
+
+### Créditos acadêmicos
+
+| Papel | Docente |
+|---|---|
+| Orientação e revisão | Prof. Dr. Márcio José da Cunha |
+| Aprendizado de Máquinas — corpus, léxico e pipeline supervisionado | Profa. Dra. Danielli Araújo Lima |
+| Visualização da Informação — identidade visual e princípios de visualização | Prof. Dr. Alexandre Cardoso |
+| Algoritmos Genéticos — otimização de hiperparâmetros (foco deste notebook) | Prof. Dr. Keiji Yamanaka |
+
+Todos vinculados ao PPGEELT/FEELT/UFU.
 
 ## Principais resultados
 
@@ -76,3 +87,4 @@ Python 3.12 · scikit-learn 1.6.1 · scipy 1.16.3 · numpy 2.0.2 · pandas 2.2.2
 ## Como citar
 
 > RAFOLS, F.; CUNHA, M. J. da. Um pipeline reprodutível para a categorização semântica supervisionada de documentos governamentais: estudo de caso nas Mensagens ao Congresso Nacional (2023–2026). *Manuscrito submetido à RITA — Revista de Informática Teórica e Aplicada* (UFRGS), 2026.
+
