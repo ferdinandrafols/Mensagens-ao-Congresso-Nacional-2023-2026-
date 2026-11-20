@@ -1,6 +1,6 @@
 # Briefing de auditoria: artigo RITA V3 (revisão maior)
 
-Data do pacote: 05/11/2026. Prazo da revista: 20/11/2026. Este pacote foi montado para uma auditoria independente do manuscrito revisado. Quem audita não participou da redação e não deve receber os rascunhos nem a carta de resposta: só o PDF, os artefatos e este roteiro.
+Data do pacote: 05/11/2026. Prazo da revista: 20/11/2026. Este pacote foi montado para uma auditoria do manuscrito revisado em sessão independente da redação, conduzida pelo assistente de IA Claude (Anthropic) a partir do prompt da seção final deste briefing. Quem audita não participou da redação e não deve receber os rascunhos nem a carta de resposta: só o PDF, os artefatos e este roteiro.
 
 ## 1. O que auditar
 
