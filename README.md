@@ -32,7 +32,7 @@ ouro/          instrumento/ (planilhas em branco v1.0 e v1.1), pilotos/, princip
                e as notas de resultados (Conjunto_ouro_pilotos.md, Conjunto_ouro_resultados_principal.md)
 scripts/       amostragem, instrumento, concordância, construção do ouro, reconciliação, treino no ouro, patch do notebook
 figuras/       scripts das figuras do artigo, dados que usam (dados/) e saídas (saida/)
-auditoria/     briefing e relatório das rodadas de auditoria independente da redação
+auditoria/     briefing e relatório das rodadas de auditoria assistida por IA, em sessão independente da redação (ver a nota no relatório)
 historico/     versão submetida (notebooks v9 e v10, README original)
 ```
 
@@ -69,7 +69,7 @@ python3 treinar_no_ouro.py ../ouro/saidas_recomputadas/conjunto_ouro.csv ../dado
 ```
 
 4. Figuras: `python3 figuras/figs_3_4_legiveis.py`, `python3 figuras/figs_estabilidade_temporal.py` e `python3 figuras/fig1_pipeline.py` (ver o cabeçalho de cada script para os argumentos).
-5. Auditoria: `COMO_AUDITAR.md` traz o roteiro de sete passos usado nas três rodadas de conferência; `auditoria/` traz o briefing e o relatório.
+5. Auditoria: `COMO_AUDITAR.md` traz o roteiro de sete passos usado nas três rodadas de conferência; `auditoria/` traz o briefing e o relatório. As rodadas foram conduzidas pelo assistente de IA Claude (Anthropic) em sessão separada da redação, com recomputação por código, e cada achado foi verificado pelo primeiro autor; o uso está declarado no artigo.
 
 ## Conjunto-ouro: o que cada pasta contém
 
