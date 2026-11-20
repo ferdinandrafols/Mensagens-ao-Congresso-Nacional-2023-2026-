@@ -22,8 +22,9 @@ Este repositório contém tudo o que o artigo cita: o corpus limpo, o léxico, o
 
 ```
 artigo/        fonte LaTeX (artigo_v3.tex, SelfArx.cls, referencias.bib) e PDF da versão revisada
-notebook/      AG_RafolsFerdinand_Otimizacao_Hiperparametros_v15_3_Paragrafos.ipynb (execução certificada de 20/10/2026)
-execucao/      log completo da execução certificada; CSVs das 30 execuções, da busca aleatória e do histórico do AG;
+notebook/      AG_RafolsFerdinand_Otimizacao_Hiperparametros_v15_3_Paragrafos.ipynb (código, sem saídas)
+execucao/      o mesmo notebook com as saídas da execução certificada de 20/10/2026 (AG_v15_3_Paragrafos_executado_20261020.ipynb);
+               log completo dessa execução; CSVs das 30 execuções, da busca aleatória e do histórico do AG;
                contraste_pagina/ (unidade de página: resumos, circularidade, temporal); certificado inválido de 18/08 (ver CHANGELOG)
 dados/         corpus_v3_paragrafo.csv (10.757 parágrafos; label_v3 = rótulo do léxico), lexico_v3_ancoras.json (229 entradas),
                pdfs/ (cópias dos quatro PDFs oficiais e seus hashes)
@@ -50,7 +51,7 @@ historico/     versão submetida (notebooks v9 e v10, README original)
 | 6.6, Tabela 7 | circularidade 2 × 3 | log; `execucao/contraste_pagina/circularidade_2x3.json` | notebook |
 | 6.6 | concordância, origem do ouro, Tabela 8, pós-estratificação | `ouro/saidas/` | passos 1 a 3 de `COMO_AUDITAR.md` |
 | 6.6 | treino no ouro | `ouro/saidas/resultado_treino_no_ouro.txt` | `python3 scripts/treinar_no_ouro.py ouro/saidas/conjunto_ouro.csv dados/corpus_v3_paragrafo.csv` |
-| 7 | certificado de 20/10 (15 sentinelas, Δmax = 0) | `execucao/log_execucao_v15_3_20_10.txt` (célula de certificação) | reexecutar o notebook |
+| 7 | certificado de 20/10 (15 sentinelas, Δmax = 0) | `execucao/AG_v15_3_Paragrafos_executado_20261020.ipynb` (saída da última célula) e `execucao/log_execucao_v15_3_20_10.txt` | reexecutar o notebook |
 
 ## Como reproduzir
 
