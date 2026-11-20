@@ -1,0 +1,1346 @@
+
+
+######## CELL 0 [markdown] ########
+
+
+######## CELL 1 [code] ########
+---- OUT ----
+Mounted at /content/drive
+
+
+######## CELL 2 [code] ########
+---- OUT ----
+v15.3 · unidade: PARAGRAFO
+Saídas desta execução : /content/drive/MyDrive/Mestrado/Etapa4_RITA/v15.3_paragrafo
+Referência V14 (r/o)  : /content/drive/MyDrive/Mestrado/Etapa4_RITA/checkpoints 
+Contraste             : /content/drive/MyDrive/Mestrado/Etapa4_RITA/v15.3_contraste
+PDFs lidos de         : /content
+
+
+######## CELL 3 [markdown] ########
+
+
+######## CELL 4 [code] ########
+---- OUT ----
+⚠️  Versões divergentes das publicadas, toleradas por decisão explícita (TOLERAR_VERSOES=True):
+  numpy: atual 2.1.3 | artigo 2.0.2
+  pandas: atual 2.2.3 | artigo 2.2.2
+   Nenhuma instalação será tentada. O certificado registra as versões efetivas;
+   sentinelas e diff dirão se a execução reproduz a referência.
+(seguindo com versões divergentes, registradas no certificado)
+Diff será contra os checkpoints da V15.1 (parágrafo): /content/drive/MyDrive/Mestrado/Etapa4_RITA/v15.1_paragrafo/checkpoints
+
+Fase 0R concluída — pode seguir com a execução completa.
+
+
+######## CELL 5 [markdown] ########
+
+
+######## CELL 6 [code] ########
+---- OUT ----
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m43.7/43.7 kB[0m [31m1.5 MB/s[0m eta [36m0:00:00[0m
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m62.4/62.4 kB[0m [31m5.3 MB/s[0m eta [36m0:00:00[0m
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m60.0/60.0 kB[0m [31m5.3 MB/s[0m eta [36m0:00:00[0m
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m6.6/6.6 MB[0m [31m24.4 MB/s[0m eta [36m0:00:00[0m
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m7.1/7.1 MB[0m [31m100.2 MB/s[0m eta [36m0:00:00[0m
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m3.8/3.8 MB[0m [31m101.2 MB/s[0m eta [36m0:00:00[0m
+[?25h[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+gradio 6.30.0 requires pillow<13.0,>=8.0, but you have pillow 13.0.0 which is incompatible.[0m[31m
+[0m✓ Dependências instaladas.
+
+
+######## CELL 7 [code] ########
+---- OUT ----
+✓ Setup concluído.
+  Paleta: 10 cores de identidade
+  Classes: 10 (9 temáticas + 1 residual)
+
+
+######## CELL 8 [markdown] ########
+
+
+######## CELL 9 [code] ########
+---- OUT ----
+Corpus catalogado:
+ year                                filename  pages  words_real
+ 2023     MensagemaoCongressoNacional2023.pdf    180       40788
+ 2024  mensagemaocongressonacional2024_vf.pdf    333      109205
+ 2025       MensagemCongressoNacional2025.pdf    668      220982
+ 2026 mensagem-ao-congresso-nacional-2026.pdf    914      322582
+
+Total: 2,095 páginas / 693,557 palavras
+
+
+######## CELL 10 [code] ########
+---- OUT ----
+✓ Funções de extração definidas (V15).
+  V11 · correção de hifenização: ATIVA
+  V15 · segmentador de parágrafo por geometria: disponível
+
+
+######## CELL 11 [code] ########
+---- OUT ----
+UNIDADE DE ANÁLISE: PARAGRAFO
+
+
+Extraindo 2023...
+  [2023] páginas 1–120 / 180
+  [2023] páginas 121–180 / 180
+  → 4,863 linhas capturadas
+
+Extraindo 2024...
+  [2024] páginas 1–120 / 333
+  [2024] páginas 121–240 / 333
+  [2024] páginas 241–333 / 333
+  → 9,076 linhas capturadas
+
+Extraindo 2025...
+  [2025] páginas 1–120 / 668
+  [2025] páginas 121–240 / 668
+  [2025] páginas 241–360 / 668
+  [2025] páginas 361–480 / 668
+  [2025] páginas 481–600 / 668
+  [2025] páginas 601–668 / 668
+  → 18,073 linhas capturadas
+
+Extraindo 2026...
+  [2026] páginas 1–120 / 914
+  [2026] páginas 121–240 / 914
+  [2026] páginas 241–360 / 914
+  [2026] páginas 361–480 / 914
+  [2026] páginas 481–600 / 914
+  [2026] páginas 601–720 / 914
+  [2026] páginas 721–840 / 914
+  [2026] páginas 841–914 / 914
+  → 25,018 linhas capturadas
+
+[V12] Vocabulário de referência: 21,543 formas simples | 775 formas hifenizadas atestadas
+[V12] Reprocessado com vocabulário: 2,679 remontagens (fusão=2,607, hífen=72)
+
+==================================================
+Total extraído: 11,005 unidades (paragrafo)
+Por ano:
+year
+2023     740
+2024    1565
+2025    3847
+2026    4853
+
+
+######## CELL 12 [markdown] ########
+
+
+######## CELL 13 [code] ########
+---- OUT ----
+==========================================================================
+AUDITORIA DA UNIDADE DE ANÁLISE — modo: PARAGRAFO
+==========================================================================
+ year  paginas  unidades  unid_por_pag  media  mediana
+ 2023      180       740           4.1   53.7     46.0
+ 2024      333      1565           4.7   67.6     61.0
+ 2025      668      3847           5.8   55.6     51.0
+ 2026      914      4853           5.3   64.7     61.0
+
+Mediana de palavras por unidade : 56
+Unidades por página (global)    : 5.25
+
+✓ Segmentação ativa: 5.3 unidades por página.
+
+Regras de quebra acionadas:
+  gap           :  12,733
+  recuo         :     362
+  marcador      :     267
+  linha_curta   :     182
+  merges_pagina :       4   (parágrafos remontados na virada de página)
+  linhas_lixo   :   2,096   (números de página e afins)
+
+Margens esquerdas mais frequentes: [(100, 42852), (230, 3390), (140, 2419), (110, 1793)]
+  ✓ Compatível com coluna única.
+
+--------------------------------------------------------------------------
+AMOSTRA PARA INSPEÇÃO (leia de verdade; foi assim que a hifenização caiu)
+--------------------------------------------------------------------------
+
+[2023 · 98 palavras]
+  É imprescindível a implementação de um amplo conjunto de políticas públicas de promoção da igualdade racial e de combate ao racismo estrutural, indissociáveis do enfrentamento da pobreza, da fome e das desigualdades, que garantam ações afirmativas para a população negra e o seu desenvolvimento integ…
+
+[2025 · 17 palavras]
+  No âmbito do Programa Nacional de Melhoria da Cobertura e da Qualidade da Banda Larga Móvel (ConectaBR
+
+[2024 · 26 palavras]
+  O Plano Nacional de Saneamento Básico – 2a revisão – permitirá um salto qualitativo, tornando-se uma ferramenta efetiva de planejamento da política federal de saneamento básico.
+
+[2025 · 52 palavras]
+  O Programa Cataforte recebeu aporte de R$ 103,8 milhões, beneficiando organizações de catadoras e catadores, por meio do financiamento de ações voltadas para aquisição de equipamentos, como veículos adaptados para a coleta de recicláveis, prensas, compactadores, e infraestrutura física, além de apoi…
+
+✓ Auditoria registrada em AUDITORIA_V15.
+
+✓ Portão da unidade: APROVADO — pode seguir para as fases seguintes.
+
+
+######## CELL 14 [code] ########
+---- OUT(text) ----
+<Figure size 1320x440 with 2 Axes>
+---- OUT ----
+Nota: volume 8× maior em 2026 vs 2023 → análises usam proporções relativas.
+
+
+######## CELL 15 [markdown] ########
+
+
+######## CELL 16 [code] ########
+---- OUT ----
+RELATÓRIO DE LIMPEZA ESTRUTURAL
+=======================================================
+Cabeçalho 'Mensagem ao Congresso Nacional AAAA' removido de todos os parágrafos.
+
+Elementos editoriais removidos por categoria:
+  legenda_figura        : 102
+  sumario_pontilhado    :  54
+  tabela_numerica       :  40
+  titulo_maiusculas     :  36
+  catalogacao           :   8
+  lista_autoridades     :   3
+
+Parágrafos: 11005 → 10757 (removidos 248)
+
+✓ Corpus limpo. As Fases 2 e 4 (rotulagem) operam sobre este corpus.
+
+
+######## CELL 17 [markdown] ########
+
+
+######## CELL 18 [code] ########
+---- OUT ----
+AUDITORIA DE HIFENIZAÇÃO (V11)
+=======================================================
+Correção ativa           : True
+Remontagens na extração  : 2,679
+
+Amostra do que foi remontado (inspecione por falso positivo):
+    presiden-ciais -> fusao
+    indepen-dência -> fusao
+    fun-damentalmente -> fusao
+    insti-tuições -> fusao
+    qua-tro -> fusao
+    auto-ritária -> fusao
+    res-pondendo -> fusao
+    Orça-mento -> fusao
+    repro-duz -> fusao
+    incan-sável -> fusao
+    gra-vidade -> fusao
+    fo-ram -> fusao
+    aban-donadas -> fusao
+    despropo-sitado -> fusao
+    pro-movida -> fusao
+    des-tinação -> fusao
+    bioeco-nomia -> fusao
+    iní-cio -> fusao
+    recupe-ração -> fusao
+    Encontra-mos -> fusao
+
+Resíduo no corpus limpo  : 3 ocorrências em 3 documentos
+  exemplos: []
+
+Resíduo por ano (média por parágrafo):
+year
+2023    0.001
+2024    0.000
+2025    0.000
+2026    0.000
+
+Vocabulário (tipos únicos): 21,358
+  → anote este número nas duas execuções; a diferença é o artefato removido.
+
+✓ Auditoria registrada em AUDITORIA_V11.
+
+
+######## CELL 19 [markdown] ########
+
+
+######## CELL 20 [code] ########
+---- OUT ----
+Léxico V1: 7 classes temáticas + 1 residual = 8 classes no total
+Total de termos-âncora: 171
+
+  economia_desenvolvimento           : 30 termos
+  programas_sociais                  : 22 termos
+  saude                              : 24 termos
+  educacao_ciencia                   : 27 termos
+  reforma_agraria_agropecuaria       : 22 termos
+  politica_externa                   : 19 termos
+  infraestrutura_meio_ambiente       : 27 termos
+
+
+######## CELL 21 [code] ########
+---- OUT ----
+✓ Função de rotulagem definida.
+  Algoritmo: tokenização regex → intersecção de conjuntos → máximo único
+
+
+######## CELL 22 [code] ########
+---- OUT ----
+Distribuição de rótulos — Léxico V1:
+label_v1
+outros_institucional            4609
+economia_desenvolvimento        1323
+infraestrutura_meio_ambiente    1290
+educacao_ciencia                 964
+programas_sociais                895
+politica_externa                 659
+saude                            589
+reforma_agraria_agropecuaria     428
+
+Residual: 4609 parágrafos (42.8%)
+Rotulados: 6148 parágrafos (57.2%)
+
+
+######## CELL 23 [code] ########
+---- OUT(text) ----
+<Figure size 1540x550 with 3 Axes>
+
+
+######## CELL 24 [markdown] ########
+
+
+######## CELL 25 [code] ########
+---- OUT ----
+TERMOS POTENCIALMENTE AMBÍGUOS NO LÉXICO V1
+=======================================================
+  'atenção': [saude]  vs  [educacao_ciencia]
+  'básica': [saude ← atenção básica]  vs  [educacao_ciencia ← ensino básico]
+  'social': [programas_sociais]  vs  [economia_desenvolvimento]
+  'transferência': [programas_sociais ← renda]  vs  [economia_desenvolvimento ← fiscal]
+  'integração': [politica_externa ← regional]  vs  [infraestrutura_meio_ambiente ← logística]
+  'regional': [politica_externa]  vs  [infraestrutura_meio_ambiente]
+  'acordo': [politica_externa ← diplomático]  vs  [economia_desenvolvimento ← comercial]
+  'reforma': [reforma_agraria_agropecuaria]  vs  [economia_desenvolvimento ← fiscal]
+  'produção': [reforma_agraria_agropecuaria ← rural]  vs  [economia_desenvolvimento ← industrial]
+  'comércio': [politica_externa ← exterior]  vs  [economia_desenvolvimento ← interno]
+  'popular': [saude ← farmácia popular]  vs  [programas_sociais ← movimento popular]
+  'ambiente': [infraestrutura_meio_ambiente]  vs  [programas_sociais ← ambiente social]
+  'transição': [infraestrutura_meio_ambiente ← energética]  vs  [outro ← governo]
+
+Total de termos com ambiguidade semântica identificada: 13
+→ Ambiguidade causa empates → parágrafo vai para residual mesmo tendo conteúdo claro
+
+
+######## CELL 26 [code] ########
+---- OUT ----
+DIAGNÓSTICO: infraestrutura_meio_ambiente
+=======================================================
+Total parágrafos na classe 'infraestrutura_meio_ambiente': 1290
+
+Composição interna:
+  amb_pura                 : 637 (49%)
+  infra_pura               : 471 (37%)
+  energia_ou_misto         : 182 (14%)
+
+Genuinamente mistos (ambos sinais > 0): 159 (12%)
+
+→ CONCLUSÃO (derivada): 49% puramente ambiente, 37% puramente infraestrutura.
+  A fusão não reflete coerência semântica — é uma limitação do léxico V1.
+
+
+######## CELL 27 [code] ########
+---- OUT ----
+DIAGNÓSTICO: causa do resíduo de 42.8%
+=======================================================
+Total residual: 4609 parágrafos
+
+Causa do resíduo:
+  zero_hits      : 2594 (56%)
+  empate         : 2015 (44%)
+
+Top 25 tokens nos parágrafos sem nenhuma âncora (zero_hits):
+  nacional: 598
+  governo: 564
+  federal: 537
+  ações: 392
+  brasil: 348
+  programa: 326
+  políticas: 294
+  além: 290
+  milhões: 287
+  país: 249
+  segurança: 244
+  meio: 230
+  pública: 218
+  públicas: 211
+  estado: 207
+  sistema: 203
+  política: 202
+  direitos: 200
+  gestão: 200
+  pessoas: 195
+  recursos: 185
+  mulheres: 183
+  estados: 183
+  municípios: 180
+  indígenas: 170
+
+→ CONCLUSÃO (derivada): 44% do resíduo vem de EMPATE e 56% de AUSÊNCIA de âncora.
+  Os tokens mais frequentes nos zero_hits indicam o tema ausente do V1 (ver lista acima);
+  a Fase 4 responde a isso com a classe governanca_institucional.
+
+
+######## CELL 28 [markdown] ########
+
+
+######## CELL 29 [code] ########
+---- OUT ----
+Léxico V3: 9 classes temáticas + 1 residual = 10 classes
+Total de termos-âncora: 229 (V1 tinha 171)
+
+  economia_desenvolvimento                : 30 termos
+  programas_sociais                       : 22 termos
+  saude                                   : 24 termos
+  educacao_ciencia                        : 27 termos
+  reforma_agraria_agropecuaria            : 22 termos
+  politica_externa                        : 19 termos
+  infraestrutura_logistica                : 22 termos  [nova]
+  meio_ambiente_energia                   : 30 termos  [nova]
+  governanca_institucional                : 33 termos  [nova]
+
+
+######## CELL 30 [code] ########
+---- OUT ----
+COMPARAÇÃO V1 → V3
+=======================================================
+Parágrafos totais       : 10,757
+Residual V1             : 4609 (42.8%)
+Residual V3             : 4387 (40.8%)
+Recuperados pelo V3     : 222
+
+Desbalanceamento V1     : 3.1× (maior/menor classe)
+Desbalanceamento V3     : 3.2× (maior/menor classe)
+
+Distribuição V3 (sem residual):
+label_v3
+economia_desenvolvimento        1117
+meio_ambiente_energia           1016
+educacao_ciencia                 853
+governanca_institucional         720
+programas_sociais                720
+infraestrutura_logistica         552
+saude                            526
+politica_externa                 522
+reforma_agraria_agropecuaria     344
+
+
+######## CELL 31 [code] ########
+---- OUT(text) ----
+<Figure size 1760x660 with 2 Axes>
+---- OUT(text) ----
+<Figure size 1100x660 with 2 Axes>
+
+
+######## CELL 32 [markdown] ########
+
+
+######## CELL 33 [code] ########
+---- OUT ----
+Exemplo de cromossomo aleatório:
+  Cromossomo (reais): [2098.567, 1.025, 0.275, 0.223, 0.209]
+  Decodificado      : {'max_features': 2099, 'ngram_max': 1, 'sublinear_tf': False, 'classifier': 0, 'C': 1.619621907336969}
+
+Espaço de busca:
+  max_features   : [500, 3000]
+  ngram_max      : [1, 2]
+  sublinear_tf   : [0, 1]
+  classifier     : [0, 1]
+  C_log          : [-2, 1]
+
+
+######## CELL 34 [code] ########
+---- OUT ----
+Corpus de treinamento: 6370 parágrafos | 9 classes
+Classes: ['economia_desenvolvimento', 'educacao_ciencia', 'governanca_institucional', 'infraestrutura_logistica', 'meio_ambiente_energia', 'politica_externa', 'programas_sociais', 'reforma_agraria_agropecuaria', 'saude']
+
+✓ Função de fitness definida.
+  Métrica   : F1-macro
+  Validação : StratifiedKFold 3-fold
+  Cache     : ativo (evita reavaliações)
+
+
+######## CELL 35 [code] ########
+---- OUT ----
+✓ Operadores genéticos definidos:
+  Crossover : Blend (BLX, α aleatório)
+  Mutação   : Gaussiana (taxa=0.30, σ=20% da amplitude)
+  Seleção   : Torneio (k=3)
+
+Demonstração:
+  Pai1   : [2191.75, 1.89, 0.09, 0.42, -1.91]
+  Pai2   : [1046.59, 1.51, 0.03, 0.2, -0.05]
+  Filho1 : [1670.64, 1.72, 0.06, 0.32, -1.06]  (crossover)
+  Mutado : [1420.81, 1.7, 0.09, 0.42, -1.91]  (mutação de pai1)
+
+
+######## CELL 36 [markdown] ########
+
+
+######## CELL 37 [code] ########
+---- OUT ----
+Calculando baseline (TF-IDF padrão + Logistic Regression)...
+Isto leva ~30 segundos...
+
+Baseline F1-macro : 0.8534
+Desvio padrão     : ±0.0006
+
+Este é o ponto de partida. O AG deve superá-lo.
+
+
+######## CELL 38 [code] ########
+---- OUT ----
+Iniciando AG: 12 indivíduos × 10 gerações
+Baseline a superar: F1 = 0.8534
+=================================================================
+  Gen 01/10 | F1_best=0.9169 | F1_med=0.6487 | Div=0.273 | SVM C=0.72 maxf=2933 | 62s
+  Gen 02/10 | F1_best=0.9176 | F1_med=0.8963 | Div=0.170 | SVM C=0.68 maxf=2675 | 101s
+  Gen 03/10 | F1_best=0.9177 | F1_med=0.9086 | Div=0.103 | SVM C=0.54 maxf=2196 | 133s
+  Gen 04/10 | F1_best=0.9184 | F1_med=0.9103 | Div=0.123 | SVM C=0.89 maxf=2219 | 167s
+  Gen 05/10 | F1_best=0.9188 | F1_med=0.9173 | Div=0.100 | SVM C=0.88 maxf=2243 | 194s
+  Gen 06/10 | F1_best=0.9208 | F1_med=0.9123 | Div=0.104 | SVM C=0.82 maxf=2352 | 223s
+  Gen 07/10 | F1_best=0.9208 | F1_med=0.9153 | Div=0.079 | SVM C=0.82 maxf=2352 | 256s
+  Gen 08/10 | F1_best=0.9208 | F1_med=0.9129 | Div=0.082 | SVM C=0.82 maxf=2352 | 288s
+  Gen 09/10 | F1_best=0.9208 | F1_med=0.9166 | Div=0.072 | SVM C=0.82 maxf=2352 | 318s
+  Gen 10/10 | F1_best=0.9208 | F1_med=0.9119 | Div=0.103 | SVM C=0.82 maxf=2352 | 350s
+
+=================================================================
+RESULTADO FINAL
+=================================================================
+F1-macro baseline  : 0.8534
+F1-macro AG        : 0.9208
+Ganho absoluto     : +0.0674
+Ganho relativo     : +7.9%
+
+Melhor cromossomo:
+  Classificador : LinearSVC
+  max_features  : 2352
+  ngram_max     : 1
+  sublinear_tf  : True
+  C             : 0.8245
+
+Avaliações únicas : 106
+Tempo total       : 380s (6.3 min)
+
+
+######## CELL 39 [markdown] ########
+
+
+######## CELL 40 [code] ########
+---- OUT(text) ----
+<Figure size 1540x550 with 2 Axes>
+
+
+######## CELL 41 [code] ########
+---- OUT(text) ----
+<Figure size 1650x440 with 3 Axes>
+
+
+######## CELL 42 [code] ########
+---- OUT(text) ----
+<Figure size 880x440 with 1 Axes>
+---- OUT ----
+
+Sumário:
+  Baseline             : F1 = 0.8534
+  AG (otimizado)       : F1 = 0.9208
+  Ganho absoluto       : +0.0674
+  Ganho relativo       : +7.9%
+  Avaliações realizadas: 106
+  Grid Search equiv.   : 20008 avaliações (inviável)
+
+
+######## CELL 43 [code] ########
+---- OUT ----
+Histórico completo do AG:
+ geracao  melhor_f1  medio_f1  pior_f1  diversidade melhor_clf  melhor_maxf  melhor_C  n_cache_hits
+       1     0.9169    0.6487   0.1349       0.2732        SVM         2933     0.717             0
+       2     0.9176    0.8963   0.8379       0.1704        SVM         2675     0.679             2
+       3     0.9177    0.9086   0.8832       0.1028        SVM         2196     0.544             3
+       4     0.9184    0.9103   0.8870       0.1229        SVM         2219     0.893             3
+       5     0.9188    0.9173   0.9114       0.1004        SVM         2243     0.881             3
+       6     0.9208    0.9123   0.8821       0.1037        SVM         2352     0.825             4
+       7     0.9208    0.9153   0.8960       0.0787        SVM         2352     0.825             2
+       8     0.9208    0.9129   0.8947       0.0816        SVM         2352     0.825             3
+       9     0.9208    0.9166   0.9056       0.0725        SVM         2352     0.825             2
+      10     0.9208    0.9119   0.8840       0.1029        SVM         2352     0.825             2
+
+
+######## CELL 44 [markdown] ########
+
+
+######## CELL 45 [code] ########
+---- OUT ----
+Iniciando validação: 30 execuções × (AG + baseline)
+Configuração AG: P=8, G=6, taxa_mut=0.3
+(Execução principal usou P=12, G=10 — ver Fase 6)
+=================================================================
+  Execução 01/30 | AG=0.9194 | baseline=0.8577 | Δ=+0.0617 | 201s | ETA ~97min
+  Execução 05/30 | AG=0.9209 | baseline=0.8559 | Δ=+0.0650 | 833s | ETA ~69min
+  Execução 10/30 | AG=0.8987 | baseline=0.8554 | Δ=+0.0433 | 1834s | ETA ~61min
+  Execução 15/30 | AG=0.9189 | baseline=0.8564 | Δ=+0.0625 | 2746s | ETA ~46min
+  Execução 20/30 | AG=0.8990 | baseline=0.8513 | Δ=+0.0477 | 3736s | ETA ~31min
+  Execução 25/30 | AG=0.9112 | baseline=0.8498 | Δ=+0.0615 | 4765s | ETA ~16min
+  Execução 30/30 | AG=0.9022 | baseline=0.8499 | Δ=+0.0523 | 5754s | ETA ~0min
+
+=================================================================
+30 execuções concluídas em 95.9 min
+
+Resumo AG       : média=0.9169 ± 0.0078
+Resumo baseline : média=0.8528 ± 0.0028
+Orçamento do AG : 41.9 ± 1.2 avaliações únicas por semente (mín 40, máx 44; limite estrutural 44)
+Δ médio         : +0.0641
+
+✓ Checkpoint salvo: fase6b_ag_baseline.csv
+  (se o runtime reiniciar, a célula de recarga restaura estes vetores)
+
+
+######## CELL 46 [code] ########
+---- OUT ----
+TESTE DE WILCOXON SIGNED-RANK
+=======================================================
+H₀: mediana(AG − baseline) = 0
+H₁: mediana(AG − baseline) > 0  [unilateral]
+α  = 0.05
+
+Estatística W : 465.0000
+p-valor       : 0.000000
+Decisão       : REJEITA H₀
+Interpretação : O AG é estatisticamente superior ao baseline (p < 0,05).
+
+Estatísticas descritivas das diferenças (AG − baseline):
+  Média   : +0.0641
+  Mediana : +0.0664
+  DP      : 0.0079
+  Mín     : +0.0433
+  Máx     : +0.0744
+  Execuções em que AG > baseline: 30/30
+
+
+######## CELL 47 [code] ########
+---- OUT(text) ----
+<Figure size 1760x550 with 3 Axes>
+
+
+######## CELL 48 [markdown] ########
+
+
+######## CELL 49 [code] ########
+---- OUT ----
+Random Search: 30 execuções × orçamento pareado ao AG (média 41.9, mín 40, máx 44)
+=================================================================
+  Execução 01/30 | RS=0.9130 | AG=0.9194 | 239s
+  Execução 05/30 | RS=0.9123 | AG=0.9209 | 1192s
+  Execução 10/30 | RS=0.9197 | AG=0.8987 | 2279s
+  Execução 15/30 | RS=0.9131 | AG=0.9189 | 3364s
+  Execução 20/30 | RS=0.9194 | AG=0.8990 | 4440s
+  Execução 25/30 | RS=0.9082 | AG=0.9112 | 5541s
+  Execução 30/30 | RS=0.9096 | AG=0.9022 | 6653s
+
+Random Search concluído em 110.9 min
+Resumo Random Search : média=0.9151 ± 0.0048
+✓ Checkpoint salvo: fase6c_rs.csv
+
+
+######## CELL 50 [code] ########
+---- OUT ----
+Verificando checkpoints...
+  f1_ag_runs: já está na memória (30 valores)
+  f1_baseline_runs: já está na memória (30 valores)
+  f1_rs_runs: já está na memória (30 valores)
+  n_aval_ag_runs: já está na memória (30 valores)
+
+✓ Todos os vetores disponíveis. Pode prosseguir para o Wilcoxon.
+
+
+######## CELL 51 [code] ########
+---- OUT ----
+TESTE DE WILCOXON — AG vs RANDOM SEARCH (mesmo orçamento)
+==========================================================
+H0: mediana(AG - RS) = 0   |   H1: mediana(AG - RS) > 0
+alpha = 0.05
+
+Estatistica W : 332.0000
+p-valor       : 0.020245
+
+AG > RS  : 24/30 execucoes
+RS > AG  : 6/30 execucoes
+Empates  : 0/30 execucoes
+
+Delta medio (AG - RS)   : +0.0018
+Delta mediana (AG - RS) : +0.0035
+
+----------------------------------------------------------
+INTERPRETACAO (narrativa honesta-completa)
+----------------------------------------------------------
+Significancia simples (alpha=0.05):
+  p=0.0202 < 0.05 -> SIGNIFICATIVO
+
+Sob correcao de Bonferroni (alpha=0.025, 2 testes):
+  p=0.0202 < 0.025 -> SIGNIFICATIVO
+
+Conclusao:
+  O AG supera o Random Search em 24/30 execucoes.
+  A diferenca E estatisticamente SIGNIFICATIVA ao nivel simples (p=0.0202, alpha=0.05) e SOBREVIVE a correcao de
+  Bonferroni (alpha=0.025). A MAGNITUDE e PEQUENA: Delta medio = +0.0018.
+  ATENCAO: significancia sem relevancia pratica. Reportar as duas coisas;
+  a conclusao substantiva (o ganho vem de otimizar de modo principiado,
+  nao da estrategia de busca) nao se altera.
+  Trabalho futuro: ampliar o espaco de busca (incluir Random Forest e seus
+  hiperparametros) e verificar onde a busca evolutiva passa a compensar.
+
+
+######## CELL 52 [code] ########
+---- OUT(text) ----
+<Figure size 1760x550 with 3 Axes>
+
+
+######## CELL 53 [markdown] ########
+
+
+######## CELL 54 [code] ########
+---- OUT ----
+TF-IDF comum aos três classificadores: max_features=2352, ngram=(1,1), sublinear_tf=True
+Otimização dedicada do Random Forest
+Grid: 24 combinações
+=======================================================
+  6/24 combinações | 36s
+  12/24 combinações | 86s
+  18/24 combinações | 163s
+  24/24 combinações | 276s
+
+── Melhor Random Forest ──
+F1-macro     : 0.9170
+n_estimators : 300
+max_depth    : None
+max_features : log2
+
+Top 5 configurações:
+ n_estimators max_depth max_features  f1_macro
+          300      None         log2  0.916982
+          200      None         log2  0.912715
+          300      None         sqrt  0.908371
+          200      None         sqrt  0.905855
+          100      None         sqrt  0.899099
+
+Tempo: 276s
+
+
+######## CELL 55 [code] ########
+---- OUT ----
+COMPARAÇÃO DOS TRÊS ALGORITMOS OTIMIZADOS
+============================================================
+          Algoritmo           Otimização  F1_macro  Ranking
+         SVM Linear AG (espaço conjunto)  0.920807        1
+      Random Forest   Grid dedicado (24)  0.916982        2
+Regressão Logística    Grid dedicado (C)  0.909411        3
+
+Baseline (referência): 0.8534  |  LR: melhor C = 10.0
+
+Observação (derivada): todos os três superam o baseline;
+o melhor dos três é SVM Linear. A leitura de separabilidade linear (H1) depende do teste pareado da Fase 7.2,
+e não desta tabela de pontos únicos.
+
+
+######## CELL 56 [code] ########
+---- OUT(text) ----
+<Figure size 1100x605 with 1 Axes>
+---- OUT ----
+Leitura (derivada): ranking nesta execução: SVM Linear > Random Forest > Regressão Logística.
+A evidência estatística de separabilidade linear vem do teste pareado da Fase 7.2.
+
+
+######## CELL 57 [markdown] ########
+
+
+######## CELL 58 [code] ########
+---- OUT(text) ----
+<Figure size 1100x880 with 2 Axes>
+---- OUT ----
+MÉTRICAS AGREGADAS — SVM Otimizado
+=============================================
+Acurácia          : 0.9234
+Precisão (macro)  : 0.9256
+Revocação (macro) : 0.9169
+F1-macro          : 0.9209
+
+Relatório por classe:
+                              precision    recall  f1-score   support
+
+    economia_desenvolvimento       0.91      0.93      0.92      1117
+            educacao_ciencia       0.95      0.93      0.94       853
+    governanca_institucional       0.90      0.92      0.91       720
+    infraestrutura_logistica       0.93      0.92      0.93       552
+       meio_ambiente_energia       0.92      0.95      0.94      1016
+            politica_externa       0.92      0.90      0.91       522
+           programas_sociais       0.92      0.92      0.92       720
+reforma_agraria_agropecuaria       0.93      0.84      0.88       344
+                       saude       0.95      0.95      0.95       526
+
+                    accuracy                           0.92      6370
+                   macro avg       0.93      0.92      0.92      6370
+                weighted avg       0.92      0.92      0.92      6370
+
+
+
+######## CELL 59 [code] ########
+---- OUT ----
+TEMPOS DE TREINAMENTO E EXECUÇÃO
+=======================================================
+          Algoritmo  Tempo treino (s)  Tempo predição (s)  F1 (holdout)
+         SVM Linear             0.761              0.1707        0.9240
+Regressão Logística             1.963              0.2542        0.9142
+      Random Forest             9.737              0.3956        0.9258
+
+(Split holdout 75/25 estratificado; TF-IDF do AG; LR com C=10.0; RF n=300, depth=None, mf=log2)
+
+Observação: o Random Forest é o mais custoso no treino — o que justifica
+sua exclusão do loop evolutivo do AG (30 execuções) e sua otimização por
+grade dedicada na Fase 6D.
+
+
+######## CELL 60 [code] ########
+---- OUT ----
+ANÁLISE DE OVERFITTING (F1 treino vs. validação)
+=======================================================
+          Algoritmo  F1 treino  F1 validação  Gap (overfit)
+         SVM Linear     0.9989        0.9208         0.0781
+Regressão Logística     1.0000        0.9094         0.0906
+      Random Forest     1.0000        0.9170         0.0830
+
+Interpretação:
+  Gap abaixo de 0.15 → leitura comparativa preservada; acima → sobreajuste a discutir.
+  (CV sobre o conjunto rotulado inteiro, não sobre a partição de treino do holdout.)
+  ✓ SVM Linear: gap de 0.078 — generalização saudável.
+  ✓ Regressão Logística: gap de 0.091 — generalização saudável.
+  ✓ Random Forest: gap de 0.083 — generalização saudável.
+
+
+######## CELL 61 [code] ########
+---- OUT ----
+AMBIENTE COMPUTACIONAL E REPRODUTIBILIDADE
+=======================================================
+Python        : 3.13.16
+Plataforma    : Linux 6.6.122+
+
+Versões das bibliotecas:
+  scikit-learn : 1.6.1
+  scipy        : 1.16.3
+  numpy        : 2.1.3
+  pandas       : 2.2.3
+  matplotlib   : 3.10.0
+  pdfplumber   : 0.11.10
+
+Configuração experimental:
+  Semente global (RANDOM_SEED) : 42
+  Validação cruzada            : StratifiedKFold 3-fold (shuffle, seed=42)
+  Métrica de fitness           : F1-macro
+  30 execuções                 : seeds 0–29 (AG e baseline pareados)
+  Random Search                : seeds 1000–1029 (offset para independência)
+
+Divisão dos dados:
+  Corpus rotulado (sem residual): 6370 parágrafos
+  Estratégia                    : validação cruzada (sem holdout fixo,
+                                   exceto medições de tempo na Fase 6E)
+
+Código-fonte: este notebook (executável de ponta a ponta no Google Colab).
+
+
+######## CELL 62 [markdown] ########
+
+
+######## CELL 63 [code] ########
+---- OUT(text) ----
+<Figure size 1760x770 with 4 Axes>
+---- OUT ----
+Proporções temáticas por ano (%) — predição do SVM:
+ano                           2023  2024  2025  2026
+classe                                              
+economia_desenvolvimento      21.6  21.6  16.8  17.1
+educacao_ciencia               7.1   9.8  14.1  14.1
+governanca_institucional      19.7  12.2  10.2  11.3
+infraestrutura_logistica       1.9  10.3   8.5   9.1
+meio_ambiente_energia         16.6  16.7  16.8  15.9
+politica_externa               3.8   8.0   8.2   8.6
+programas_sociais             15.2  11.5  11.1  10.9
+reforma_agraria_agropecuaria   6.2   4.5   5.3   4.4
+saude                          8.1   5.4   8.9   8.6
+
+
+######## CELL 64 [code] ########
+---- OUT ----
+DENOMINADORES DA TABELA 7 (unidade: PARAGRAFO)
+============================================================
+label_v3  rotulados  residuo    total  residuo_pct
+year                                              
+2023          422.0    301.0    723.0         41.6
+2024          928.0    590.0   1518.0         38.9
+2025         2196.0   1573.0   3769.0         41.7
+2026         2824.0   1923.0   4747.0         40.5
+TOTAL        6370.0   4387.0  10757.0         40.8
+
+Origem das predições: cross_val_predict, StratifiedKFold(3, shuffle, seed=42),
+sobre as unidades rotuladas; o resíduo não entra nas proporções.
+
+Divergência predito − léxico (p.p.):
+ano                           2023  2024  2025  2026
+classe                                              
+economia_desenvolvimento      0.47 -0.11  0.23  0.78
+educacao_ciencia             -1.18 -0.32 -0.09 -0.46
+governanca_institucional      1.18  0.22  0.36  0.18
+infraestrutura_logistica     -0.24  0.32 -0.32  0.00
+meio_ambiente_energia         0.47  0.54  0.41  0.39
+politica_externa             -0.24  0.11 -0.05 -0.35
+programas_sociais             0.47  0.54 -0.41  0.14
+reforma_agraria_agropecuaria -0.24 -0.86 -0.32 -0.64
+saude                        -0.71 -0.43  0.18 -0.04
+
+Maior divergência absoluta: 1.18 p.p.
+
+✓ Exportados: denominadores_por_ano.csv, divergencia_lexico_modelo.csv, proporcoes_lexico.csv
+
+
+######## CELL 65 [code] ########
+---- OUT ----
+H3 — CONTINUIDADE TEMÁTICA
+=======================================================
+Critério: variação < 10 p.p. entre anos consecutivos (exceto política externa)
+
+✓ H3 CONFIRMADA: nenhuma classe variou >= 10 p.p. entre anos consecutivos.
+
+
+H4 — INFLEXÃO PRÉ-ELEITORAL (2026)
+=======================================================
+Critério: 2026 com +programas_sociais e -politica_externa vs média 2023-25
+
+  programas_sociais: 2026 vs média 2023-25 = -1.7 p.p.
+  politica_externa: 2026 vs média 2023-25 = +1.9 p.p.
+
+✗ H4 REFUTADA: o padrão pré-eleitoral previsto não se confirmou.
+
+
+DIVERGÊNCIA LÉXICO vs. MODELO (média absoluta por classe)
+=======================================================
+  educacao_ciencia              : 0.5 p.p.
+  reforma_agraria_agropecuaria  : 0.5 p.p.
+  governanca_institucional      : 0.5 p.p.
+  meio_ambiente_energia         : 0.5 p.p.
+  economia_desenvolvimento      : 0.4 p.p.
+  programas_sociais             : 0.4 p.p.
+  saude                         : 0.3 p.p.
+  infraestrutura_logistica      : 0.2 p.p.
+  politica_externa              : 0.2 p.p.
+
+Classes com maior divergência indicam onde o modelo mais difere da
+rotulagem fraca — sinal dos limites do léxico e do valor do classificador.
+
+
+######## CELL 66 [markdown] ########
+
+
+######## CELL 67 [code] ########
+---- OUT ----
+Arquivos exportados:
+  resultados_ag.json          — sumário completo (1 execução + 30 + Wilcoxon)
+  historico_ag.csv            — evolução geração a geração (Fase 6)
+  corpus_v3.csv               — corpus completo com rótulos V1 e V3
+  resultados_30_execucoes.csv — F1 por seed para AG e baseline
+
+{
+  "lexicon_version": "V3",
+  "n_classes": 9,
+  "n_paragrafos": 6370,
+  "execucao_unica": {
+    "baseline_f1": 0.8534,
+    "ag_melhor_f1": 0.9208,
+    "ganho_absoluto": 0.0674,
+    "ganho_relativo_pct": 7.9,
+    "melhor_params": {
+      "classificador": "LinearSVC",
+      "max_features": 2352,
+      "ngram_max": 1,
+      "sublinear_tf": true,
+      "C": 0.8245
+    }
+  },
+  "validacao_30_execucoes": {
+    "n_execucoes": 30,
+    "ag_media": 0.9169,
+    "ag_mediana": 0.9197,
+    "ag_dp": 0.0078,
+    "ag_min": 0.8986,
+    "ag_max": 0.926,
+    "baseline_media": 0.8528,
+    "baseline_mediana": 0.8524,
+    "baseline_dp": 0.0028,
+    "wilcoxon_W": 465.0,
+    "wilcoxon_p": 0.0,
+    "wilcoxon_alpha": 0.05,
+    "wilcoxon_decisao": "REJEITA H₀",
+    "execucoes_ag_maior": 30,
+    "orcamento_ag_media": 41.93,
+    "orcamento_ag_dp": 1.18,
+    "orcamento_ag_min": 40,
+    "orcamento_ag_max": 44
+  },
+  "ag_config": {
+    "pop_size": 12,
+    "n_geracoes": 10,
+    "n_elite": 2,
+    "taxa_mut": 0.3,
+    "cv_folds": 3,
+    "metrica": "f1_macro"
+  }
+}
+
+
+######## CELL 68 [markdown] ########
+
+
+######## CELL 69 [code] ########
+
+
+######## CELL 70 [code] ########
+---- OUT ----
+Funções definidas: fig3, fig4, fig5, fig6, fig7
+
+
+######## CELL 71 [code] ########
+---- OUT ----
+  ✓ Fig3_Metricas_por_Classe.pdf + .png
+---- OUT(text) ----
+<Figure size 1104x720 with 1 Axes>
+---- OUT ----
+  ✓ Fig4_Matriz_Confusao.pdf + .png
+---- OUT(text) ----
+<Figure size 1056x864 with 2 Axes>
+---- OUT ----
+  ✓ Fig7_Diacronica_Agenda.pdf + .png
+---- OUT(text) ----
+<Figure size 1260x984 with 9 Axes>
+---- OUT ----
+  ✓ Fig5_Convergencia_AG.pdf + .png
+---- OUT(text) ----
+<Figure size 960x600 with 1 Axes>
+---- OUT ----
+  ✓ Fig6_AG_vs_Random_vs_Baseline.pdf + .png
+---- OUT(text) ----
+<Figure size 960x672 with 1 Axes>
+
+
+######## CELL 72 [code] ########
+---- OUT ----
+Dados das figuras exportados para: /content/drive/MyDrive/Mestrado/Etapa4_RITA/v15.3_paragrafo/dados
+Conteúdo da pasta de dados: ['corpus_v3.csv', 'denominadores_por_ano.csv', 'divergencia_lexico_modelo.csv', 'historico_ag.csv', 'matriz_confusao.csv', 'metricas_por_classe.csv', 'proporcoes_diacronicas.csv', 'proporcoes_lexico.csv', 'resultados_30_execucoes.csv', 'resultados_ag.json']
+
+
+######## CELL 73 [markdown] ########
+
+
+######## CELL 74 [code] ########
+---- OUT ----
+V10 pronto - corpus: 6370 paragrafos | 9 classes | seed=42
+V10 TF-IDF vencedor (SVM): {'max_features': 2352, 'ngram_max': 1, 'sublinear_tf': True, 'C': 0.8245163637337287}
+
+
+######## CELL 75 [markdown] ########
+
+
+######## CELL 76 [code] ########
+---- OUT ----
+  fold externo 1: F1=0.9106  (SVM, mf=1453, C=0.651)
+  fold externo 2: F1=0.9178  (SVM, mf=2157, C=9.781)
+  fold externo 3: F1=0.9095  (LR, mf=1104, C=3.465)
+  fold externo 4: F1=0.9157  (LR, mf=1905, C=8.220)
+  fold externo 5: F1=0.9102  (SVM, mf=1891, C=3.653)
+
+============================================================
+7.1 · GENERALIZACAO (estimativa nao enviesada)
+============================================================
+  (a) Enviesado (selecao = relato, mesma CV) : 0.9156
+  (b) CV aninhada 5x3 (SEM vies)             : 0.9127 +/- 0.0033
+  (c) Held-out 75/25 (teste intocado)        : 0.9176
+  Otimismo de selecao (a - b)                : +0.0028
+  SVM selecionado em 3/5 dobras externas (SVM predominante entre os lineares)
+  Obs.: a aninhada estima a generalizacao do PROCEDIMENTO de selecao (busca aleatoria, 20 configs);
+  nao subtrair dela o F1 do AG como 'otimismo de selecao' — sao seletores diferentes.
+
+
+######## CELL 77 [code] ########
+---- OUT ----
+  ✓ fig_v10_generalizacao.pdf + .png
+---- OUT(text) ----
+<Figure size 1008x432 with 1 Axes>
+
+
+######## CELL 78 [markdown] ########
+
+
+######## CELL 79 [code] ########
+---- OUT ----
+==============================================================
+7.2 · TABELA 2 — dispersao (30 dobras pareadas, MESMO TF-IDF)
+==============================================================
+  SVM linear            : 0.9184 +/- 0.0052
+  Regressão Logística   : 0.9101 +/- 0.0064
+  Random Forest         : 0.9077 +/- 0.0057
+
+  (LR otimizado com C=10.0 sobre o mesmo TF-IDF)
+
+Wilcoxon pareado (unilateral, alpha=0,05) + tamanho de efeito (rank-biserial):
+  SVM linear > Regressão Logística: W=463  p=0.0000  (29/30)  r=+0.991  -> significativo
+  SVM linear > Random Forest: W=461  p=0.0000  (29/30)  r=+0.983  -> significativo
+  Regressão Logística > Random Forest: W=307  p=0.0647  (17/30)  r=+0.320  -> nao significativo
+
+
+######## CELL 80 [code] ########
+---- OUT ----
+  ✓ fig_v10_tabela2_dispersao.pdf + .png
+---- OUT(text) ----
+<Figure size 912x552 with 1 Axes>
+
+
+######## CELL 81 [markdown] ########
+
+
+######## CELL 82 [code] ########
+---- OUT ----
+[V13.1] Vetores restaurados dos checkpoints (30 execuções).
+7.3 · TAMANHOS DE EFEITO (rank-biserial) — recomputados dos vetores
+==================================================
+  AG vs baseline      : r = +1.000  (p = 0.000000)
+  AG vs Random Search : r = +0.428  (p = 0.0202)
+
+
+######## CELL 83 [markdown] ########
+
+
+######## CELL 84 [code] ########
+---- OUT ----
+V10 · artefatos exportados em: /content/drive/MyDrive/Mestrado/Etapa4_RITA/v15.3_paragrafo/dados
+  - resultados_v10.json
+  - tabela2_dispersao_v10.csv
+  - scores_30dobras_v10.csv
+
+============================================================
+RESUMO V10 (para o artigo)
+============================================================
+{
+  "generalizacao": {
+    "f1_enviesado_selecao": 0.9156,
+    "f1_cv_aninhada_media": 0.9127,
+    "f1_cv_aninhada_dp": 0.0033,
+    "f1_holdout_75_25": 0.9176,
+    "otimismo_selecao": 0.0028,
+    "svm_em_dobras_externas": "3/5"
+  },
+  "tabela2_dispersao": [
+    {
+      "Algoritmo": "SVM linear",
+      "F1_macro_media": 0.9184,
+      "F1_macro_dp": 0.0052
+    },
+    {
+      "Algoritmo": "Regressão Logística",
+      "F1_macro_media": 0.9101,
+      "F1_macro_dp": 0.0064
+    },
+    {
+      "Algoritmo": "Random Forest",
+      "F1_macro_media": 0.9077,
+      "F1_macro_dp": 0.0057
+    }
+  ],
+  "tabela2_wilcoxon": {
+    "SVM linear > Regressão Logística": {
+      "W": 463.0,
+      "p": 0.0,
+      "vitorias": "29/30",
+      "r": 0.991,
+      "decisao": "significativo"
+    },
+    "SVM linear > Random Forest": {
+      "W": 461.0,
+      "p": 0.0,
+      "vitorias": "29/30",
+      "r": 0.983,
+      "decisao": "significativo"
+    },
+    "Regressão Logística > Random Forest": {
+      "W": 307.0,
+      "p": 0.0647,
+      "vitorias": "17/30",
+      "r": 0.32,
+      "decisao": "nao significativo"
+    }
+  },
+  "lr_C_otimo": 10.0,
+  "efeitos_testes_publicados": {
+    "AG_vs_baseline_r": 1.0,
+    "AG_vs_RandomSearch_r": 0.428,
+    "p_AG_vs_baseline": 9.313225746154785e-10,
+    "p_AG_vs_RS": 0.020244861021637917
+  }
+}
+
+
+######## CELL 85 [markdown] ########
+
+
+######## CELL 86 [code] ########
+---- OUT ----
+
+==============================================================
+Condição: com_correcao
+==============================================================
+  parágrafos=10757  vocab=21,358  remontagens=2679  resíduo=3
+  F1 baseline=0.8534  F1 AG=0.9208
+
+==============================================================
+Condição: sem_correcao
+==============================================================
+  parágrafos=10757  vocab=23,051  remontagens=0  resíduo=2679
+  F1 baseline=0.8516  F1 AG=0.9173
+
+
+======================================================================
+ROBUSTEZ À CORREÇÃO DE HIFENIZAÇÃO (V12) — unidade: PARAGRAFO
+======================================================================
+métrica                    sem correção   com correção             Δ
+----------------------------------------------------------------------
+parágrafos                       10,757         10,757            +0
+vocabulário (tipos)              23,051         21,358        -1,693
+resíduo hífen                     2,679              3        -2,676
+n treinamento                     6,343          6,370           +27
+F1 baseline                      0.8516         0.8534       +0.0018
+F1 AG (melhor)                   0.9173         0.9208       +0.0035
+
+Leitura:
+  F1 praticamente inalterado (+0.0018). Correção é higiene
+  metodológica sem efeito material — mesmo padrão da Fase 1B.
+
+✓ Salvo em /content/drive/MyDrive/Mestrado/Etapa4_RITA/v15.3_paragrafo/dados/V12_robustez_hifenizacao.json
+
+
+######## CELL 87 [markdown] ########
+
+
+######## CELL 88 [code] ########
+---- OUT ----
+==========================================================================
+VALIDAÇÃO FINAL DA EXECUÇÃO DE REGISTRO (V14)
+==========================================================================
+  [  OK   ] remontagens            esperado 2679 | obtido 2679
+  [  OK   ] residuo                esperado 3 | obtido 3
+  [  OK   ] vocabulario            esperado 21358 | obtido 21358
+  [  OK   ] paragrafos_limpos      esperado 10757 | obtido 10757
+  [  OK   ] treinamento            esperado 6370 | obtido 6370
+  [  OK   ] residual_v3            esperado 4387 | obtido 4387
+  [  OK   ] ag_max_features        esperado 2352 | obtido 2352
+  [  OK   ] ag_ngram               esperado 1 | obtido 1
+  [  OK   ] ag_sublinear           esperado True | obtido True
+  [  OK   ] ag_C                   esperado 0.8245 | obtido 0.8245
+  [  OK   ] f1_baseline_unico      esperado 0.8534 | obtido 0.8534
+  [  OK   ] runs_ag_media          esperado 0.9169 | obtido 0.9169
+  [  OK   ] runs_bl_media          esperado 0.8528 | obtido 0.8528
+  [ NOVO  ] runs_rs_media          registrado 0.9151 (sem esperado nesta versão)
+  [  OK   ] W_ag_bl                esperado 465 | obtido 465
+  [ NOVO  ] W_ag_rs                registrado 332 (sem esperado nesta versão)
+  [ NOVO  ] p_ag_rs                registrado 0.0202 (sem esperado nesta versão)
+  [  OK   ] r_ag_bl                esperado 1.0 | obtido 1.0
+  [ NOVO  ] r_ag_rs                registrado 0.428 (sem esperado nesta versão)
+  [ NOVO  ] vitorias_ag_rs         registrado 24 (sem esperado nesta versão)
+  [  OK   ] diff_vs_arquivado      REPRODUÇÃO EXATA (Δmax = 0) em fase6b
+  [ NOVO  ] diff_rs_informativo    RS com orçamento pareado: Δmax = 4.41e-03 vs. arquivo anterior (divergência esperada)
+--------------------------------------------------------------------------
+VEREDITO: APROVADA — execução reproduz a referência (6 grandeza(s) registrada(s) como referência nova)
+
+✓ Certificado gravado: /content/drive/MyDrive/Mestrado/Etapa4_RITA/v15.3_paragrafo/dados/Certificado_Registro_20261020T0340.json
+
+
+######## CELL 89 [markdown] ########
+
+
+######## CELL 90 [code] ########
+---- OUT ----
+Termos-âncora do léxico V3 : 229
+Tokens após normalização   : 232
+  amostra: ['acordo', 'aeroporto', 'aeroportos', 'agraria', 'agrario', 'agricola', 'agricultor', 'agricultores', 'agricultura', 'agronegocio', 'alianca', 'aluno']
+
+==========================================================================
+UNIDADE: PAGINA  (1,518 unidades rotuladas)
+==========================================================================
+  ✓ n coincide com o corpus registrado (1518)
+  âncoras presentes no vocabulário completo : 157
+  âncoras que sobraram após stop_words      : 0  ✓
+  completo      : F1 = 0.8016 ± 0.0157   (30 medidas)
+  sem_ancoras   : F1 = 0.6693 ± 0.0146   (30 medidas)
+  so_ancoras    : F1 = 0.8875 ± 0.0123   (30 medidas)
+  → QUEDA ao remover âncoras: +0.1323 (16.5%)  Wilcoxon W=0, p=1.86e-09
+    (W = 0: as 30 diferenças têm o mesmo sinal; p é o mínimo possível para n = 30)
+
+==========================================================================
+UNIDADE: PARAGRAFO  (6,370 unidades rotuladas)
+==========================================================================
+  ✓ n coincide com o corpus registrado (6370)
+  âncoras presentes no vocabulário completo : 175
+  âncoras que sobraram após stop_words      : 0  ✓
+  completo      : F1 = 0.9184 ± 0.0052   (30 medidas)
+  sem_ancoras   : F1 = 0.5440 ± 0.0076   (30 medidas)
+  so_ancoras    : F1 = 0.9880 ± 0.0019   (30 medidas)
+  → QUEDA ao remover âncoras: +0.3744 (40.8%)  Wilcoxon W=0, p=1.86e-09
+    (W = 0: as 30 diferenças têm o mesmo sinal; p é o mínimo possível para n = 30)
+
+==========================================================================
+VEREDITO — circularidade em função do tamanho da unidade
+==========================================================================
+                   completo  sem ancoras  so ancoras     queda
+pagina               0.8016       0.6693      0.8875     16.5%
+paragrafo            0.9184       0.5440      0.9880     40.8%
+
+Queda em página    : 16.5%
+Queda em parágrafo : 40.8%
+
+→ HIPÓTESE SUSTENTADA: a queda é maior na unidade menor. O F1 mais alto
+  em parágrafo reflete, em parte, detecção de termo-âncora — não
+  categorização semântica superior. Reportar as duas colunas.
+
+✓ gravado: /content/drive/MyDrive/Mestrado/Etapa4_RITA/v15.3_contraste/circularidade_2x3.json
+✓ gravado: /content/drive/MyDrive/Mestrado/Etapa4_RITA/v15.3_contraste/circularidade_2x3_medidas.csv (180 medidas)
+
+
+######## CELL 91 [markdown] ########
+
+
+######## CELL 92 [code] ########
+---- OUT ----
+✓ Resumo gravado: /content/drive/MyDrive/Mestrado/Etapa4_RITA/v15.3_contraste/resumo_v15_paragrafo.json
+{
+  "unidade": "paragrafo",
+  "n_unidades_brutas": 11005,
+  "unidades_por_pagina": 5.253,
+  "palavras_por_unidade_mediana": 56.0,
+  "n_limpo": 10757,
+  "n_treinamento": 6370,
+  "n_residual": 4387,
+  "f1_melhor": 0.9208,
+  "f1_baseline": 0.8534,
+  "f1_aninhada": 0.9127,
+  "dp_aninhada": 0.0033,
+  "f1_holdout": 0.9176,
+  "f1_svm": 0.9208,
+  "f1_lr": 0.9094,
+  "f1_rf": 0.917,
+  "p_ag_rs": 0.020245,
+  "runs_ag_media": 0.9169,
+  "runs_rs_media": 0.9151,
+  "orcamento_ag_media": 41.93,
+  "orcamento_ag_dp": 1.18,
+  "n_avaliacoes_execucao_principal": 106,
+  "versao": "v15.3"
+}
+
+→ Falta a execução com UNIDADE_ANALISE="pagina". Troque o valor na célula 2 e aperte Executar tudo de novo.

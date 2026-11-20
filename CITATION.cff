@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Se usar estes artefatos, cite o artigo."
+title: "Um pipeline reprodutível para a categorização semântica supervisionada de documentos governamentais: estudo de caso nas Mensagens ao Congresso Nacional (2023–2026)"
+authors:
+  - family-names: Rafols
+    given-names: Ferdinand
+  - family-names: Cunha
+    given-names: Márcio José da
+  - family-names: Lima
+    given-names: Danielli Araújo
+  - family-names: Yamanaka
+    given-names: Keiji
+  - family-names: Cardoso
+    given-names: Alexandre
+date-released: 2026-11-20
+repository-code: "https://github.com/ferdinandrafols/Mensagens-ao-Congresso-Nacional-2023-2026-"
+notes: "Versão revisada submetida à Revista de Informática Teórica e Aplicada (RITA, UFRGS). Um depósito com identificador persistente está previsto para a versão final."

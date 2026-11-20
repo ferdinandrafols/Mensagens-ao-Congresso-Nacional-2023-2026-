@@ -1,0 +1,494 @@
+%----------------------------------------------------------------------------------------
+%  Artigo RITA, versão 3 (revisão maior). Template SelfArx da RITA.
+%----------------------------------------------------------------------------------------
+\documentclass[fleqn,10pt]{SelfArx}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\addto\captionsbrazil{\renewcommand{\abstractname}{Abstract}}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{url}
+\usepackage{balance}
+\usepackage{hyperref}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{comment}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[labelfont=bf]{subcaption}
+\usepackage{tcolorbox}
+\definecolor{mycolor}{rgb}{0,0,0}
+\makeatletter
+\newcommand{\mybox}[1]{%
+	\setbox0=\hbox{#1}%
+	\setlength{\@tempdima}{\dimexpr\wd0+13pt}%
+	\begin{tcolorbox}[colframe=mycolor,boxrule=0.5pt,arc=4pt,
+		left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=\@tempdima]
+		#1
+	\end{tcolorbox}
+}
+\makeatother
+\usepackage[resetlabels,labeled]{multibib}
+\newcites{A}{Appendix}
+\usepackage[num]{abntex2cite}
+\citebrackets[]
+\graphicspath{{figuras/}}
+
+\setlength{\columnsep}{0.55cm}
+\setlength{\fboxrule}{0.75pt}
+\definecolor{color1}{RGB}{0,0,90}
+\definecolor{color2}{RGB}{0,20,20}
+\hypersetup{hidelinks,colorlinks,breaklinks=true,urlcolor=color2,citecolor=color1,linkcolor=color1,bookmarksopen=false,pdftitle={Um pipeline reprodutivel para a categorizacao semantica supervisionada de documentos governamentais},pdfauthor={Ferdinand Rafols}}
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE INFORMATION
+%----------------------------------------------------------------------------------------
+\JournalInfo{\color{gray}\normalsize\sffamily\bfseries Revista de Informática Teórica e Aplicada - RITA - ISSN 2175-2745\\ Vol.~XX, Num.~XX~(2026)~1-XX}
+\Archive{\mybox{RESEARCH ARTICLE}}
+
+\PaperTitle{A reproducible pipeline for the supervised semantic categorization of governmental documents: a case study on the Messages to the National Congress (2023--2026)}
+\ShortTitle{A reproducible pipeline for the semantic categorization of governmental documents}
+\Titulo{Um pipeline reprodutível para a categorização semântica supervisionada de documentos governamentais: estudo de caso nas Mensagens ao Congresso Nacional (2023--2026)}
+
+\PaperVol{XX}
+\PaperNum{X}
+\PaperAno{2026}
+
+\Authors{Ferdinand Rafols\textsuperscript{1}*, Márcio José da Cunha\textsuperscript{1}, Danielli Araújo Lima\textsuperscript{1}, Keiji Yamanaka\textsuperscript{1}, Alexandre Cardoso\textsuperscript{1}}
+\affiliation{\textsuperscript{1}\textit{Programa de Pós-Graduação em Engenharia Elétrica (PPGEELT), Universidade Federal de Uberlândia (UFU), Uberlândia, MG, Brasil}}
+\affiliation{*\textbf{Autor correspondente}: ferdinand.rafols@ufu.br}
+
+\Keywords{text classification --- weak supervision --- gold standard --- support vector machine --- hyperparameter optimization --- genetic algorithm --- reproducibility --- governmental agenda --- Brazil}
+\newcommand{\keywordname}{Keywords}
+\PalavrasChave{classificação de texto --- supervisão fraca --- conjunto-ouro --- máquina de vetores de suporte --- otimização de hiperparâmetros --- algoritmo genético --- reprodutibilidade --- agenda governamental --- Brasil}
+
+\Doi{}
+\DateR{dd/mm/2026}
+\DateA{dd/mm/2026}
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+\Abstract{Large-scale semantic categorization of governmental documents is relevant to public-policy analysis, provided the procedure is transparent, reproducible and evaluated against a reference independent of the labels used for training. This work presents a reproducible supervised pipeline for classifying paragraphs of governmental documents and applies it to the Brazilian Presidential Messages to Congress (2023--2026). Paragraphs (10,757 after cleaning) are labeled by a lexicon of anchor terms (weak supervision), represented by TF-IDF (term frequency--inverse document frequency) and classified by Logistic Regression, linear Support Vector Machine (SVM) and Random Forest, with an auditable genetic-algorithm hyperparameter optimization stage validated by a 30-run paired protocol and the Wilcoxon test. Against the lexicon labels, the best model (linear SVM) reaches a macro-F1 of 0.921 (0.913 $\pm$ 0.003 under nested cross-validation); the genetic algorithm outperforms a random search of equal budget by a small margin (median +0.0035). A 2 $\times$ 3 circularity test shows that removing the anchor terms from the vocabulary lowers the macro-F1 against the lexicon from 0.918 to 0.544. A gold set of 540 paragraphs, annotated independently by two external coders (Cohen's $\kappa$ = 0.61), with blind adjudication and written reconciliation, gives a macro-F1 of 0.579 [95\% CI 0.536; 0.616] for the same classifier, and 79 of the 82 adjudicated paragraphs the lexicon had left unlabeled receive a thematic class from the coders. The metric against the lexicon therefore overestimates semantic quality by 0.25 to 0.34 of F1, depending on how the residual class is treated; the pipeline is reproducible and auditable, and the categorization it delivers is bounded by the lexicon. All artifacts, including the gold set, are released.}
+
+\Resumo{A categorização semântica de documentos governamentais em larga escala é relevante para a análise de políticas públicas, desde que o procedimento seja transparente, reprodutível e avaliado contra uma referência independente dos rótulos usados no treino. Este trabalho apresenta um pipeline reprodutível para a classificação supervisionada de parágrafos de documentos governamentais e o aplica às Mensagens Presidenciais ao Congresso Nacional do Brasil (2023--2026). Os parágrafos (10.757 após limpeza) são rotulados por um léxico de termos-âncora (supervisão fraca), representados por TF-IDF (\textit{term frequency--inverse document frequency}) e classificados por Regressão Logística, máquina de vetores de suporte linear (SVM) e Random Forest, com uma etapa auditável de otimização de hiperparâmetros por Algoritmo Genético, validada por um protocolo pareado de 30 execuções e pelo teste de Wilcoxon. Contra os rótulos do léxico, o melhor modelo (SVM linear) alcança F1-macro de 0,921 (0,913 $\pm$ 0,003 em validação cruzada aninhada); o algoritmo genético supera uma busca aleatória de mesmo orçamento por margem pequena (mediana +0,0035). Um teste de circularidade 2 $\times$ 3 mostra que remover os termos-âncora do vocabulário reduz o F1-macro contra o léxico de 0,918 para 0,544. Um conjunto-ouro de 540 parágrafos, anotado de forma independente por dois codificadores externos ($\kappa$ de Cohen = 0,61), com adjudicação cega e reconciliação escrita, dá F1-macro de 0,579 [IC 95\% 0,536; 0,616] para o mesmo classificador, e 79 dos 82 parágrafos adjudicados que o léxico deixara sem rótulo recebem uma classe temática dos codificadores. A métrica contra o léxico superestima a qualidade semântica em 0,25 a 0,34 de F1, conforme o tratamento do resíduo; o pipeline é reprodutível e auditável, e a categorização que entrega é limitada pelo léxico. Todos os artefatos, inclusive o conjunto-ouro, são disponibilizados.}
+
+%----------------------------------------------------------------------------------------
+\begin{document}
+\setcounter{page}{1}
+\flushbottom
+\maketitle
+\thispagestyle{empty}
+
+%----------------------------------------------------------------------------------------
+\section{Introdução}
+\addcontentsline{toc}{section}{Introdução}
+
+A análise computacional de documentos governamentais oferece uma via para examinar, em escala, como o Estado organiza e comunica suas prioridades. Documentos oficiais extensos (relatórios, planos e mensagens institucionais) concentram informação temática que seria custosa de sistematizar manualmente. Métodos de classificação de texto permitem atribuir categorias semânticas a esse material de forma automática \cite{jurafsky2025slp}; seu valor analítico depende de que o procedimento seja transparente, reproduzível e avaliado contra uma referência independente dos rótulos que o treinaram.
+
+Este trabalho aborda a categorização semântica supervisionada de parágrafos de documentos governamentais, tendo como estudo de caso as Mensagens Presidenciais ao Congresso Nacional do Brasil, do período 2023--2026. Trata-se de instrumentos constitucionais previstos no Art. 84 da Constituição Federal brasileira, redigidos pelos ministérios do Poder Executivo federal, que expõem a situação do país e as diretrizes do governo. São tratados, portanto, como expressão da agenda governamental, o programa formal do Executivo; o discurso pessoal do chefe de Estado fica fora do objeto.
+
+A questão de pesquisa é se classificadores supervisionados clássicos, baseados na ponderação TF-IDF (\textit{term frequency--inverse document frequency}) e treinados com rótulos obtidos por um léxico temático, categorizam de forma confiável e reproduzível a agenda expressa nesses documentos. A contribuição organiza-se em três eixos, enunciados em termos verificáveis. Primeiro, um pipeline de categorização semântica cuja execução de referência é certificada por sentinelas declaradas antes da execução, de modo que um terceiro reproduz os mesmos números a partir dos artefatos publicados. Segundo, a medição da circularidade entre o léxico que rotula o treino e a métrica que avalia o classificador, em duas unidades de análise (página e parágrafo) e contra um conjunto-ouro anotado por leitores externos. Terceiro, um teste de suficiência da otimização evolutiva de hiperparâmetros contra uma busca aleatória de orçamento pareado por semente. A versão submetida deste artigo reivindicava um ``benchmark'' de otimização e lia as métricas contra o léxico como ``limite inferior'' de qualidade; as duas afirmações foram retiradas, pelas razões que a Seção~\ref{sec:ouro} documenta.
+
+O pipeline é projetado para ser transferível a outros corpora governamentais, mas é validado sobre um único acervo; a generalização a outros corpora é propriedade de projeto, indicada como trabalho futuro; os resultados demonstrados referem-se apenas a este acervo.
+
+O restante do artigo organiza-se como segue. A Seção~\ref{sec:relacionados} revisa os trabalhos relacionados. A Seção~\ref{sec:corpus} descreve o corpus. A Seção~\ref{sec:metodo} detalha o método, inclusive o conjunto-ouro. As Seções~\ref{sec:config} e~\ref{sec:resultados} apresentam a configuração experimental e os resultados. A Seção~\ref{sec:repro} trata da reprodutibilidade e a Seção~\ref{sec:conclusao} conclui.
+
+%----------------------------------------------------------------------------------------
+\section{Trabalhos relacionados}
+\label{sec:relacionados}
+
+O trabalho situa-se na confluência de quatro linhas: a classificação de texto com métodos clássicos, a otimização de hiperparâmetros, a metodologia de comparação empírica de algoritmos e a classificação temática de textos políticos e governamentais.
+
+A classificação de texto baseada em representações esparsas e classificadores lineares é um paradigma consolidado. O modelo TF-IDF \cite{salton1988, manning2008} e o uso de máquinas de vetores de suporte para categorização \cite{joachims1998, cortes1995} permanecem referências de desempenho e eficiência quando as classes são aproximadamente lineares no espaço de atributos. Em corpora de tamanho moderado e alta dimensionalidade, esses métodos têm custo computacional baixo e cada decisão do pipeline é inspecionável, o que motiva sua adoção como base auditável; a comparação com modelos neurais, inclusive os de linguagem ajustados ao português, não foi feita neste trabalho e é indicada na Seção~\ref{sec:conclusao}.
+
+A otimização de hiperparâmetros é etapa decisiva no desempenho de classificadores. As estratégias vão da busca em grade à busca aleatória e às metaheurísticas, como os algoritmos genéticos. Bergstra e Bengio \cite{bergstra2012} mostram que a busca aleatória é competitiva, em especial em espaços de baixa dimensionalidade, em que a estrutura explorada por métodos mais sofisticados oferece pouco ganho. Bischl et al. \cite{bischl2023} sistematizam o campo e recomendam que qualquer comparação entre estratégias de busca controle o orçamento de avaliações e separe a seleção de hiperparâmetros da estimativa de generalização, por validação aninhada. O teste AG $\times$ busca aleatória com orçamento pareado por semente e a validação aninhada com laços declarados, na Seção~\ref{sec:protocolo}, seguem essas recomendações.
+
+A comparação empírica de algoritmos exige rigor estatístico. Demšar \cite{demsar2006} e García et al. \cite{garcia2010} estabeleceram boas práticas para o uso de testes não paramétricos, como o de Wilcoxon, na comparação de classificadores sobre múltiplas execuções. Este trabalho adota essas práticas e, em particular, descreve a composição e o pareamento de cada conjunto de observações submetido a teste.
+
+A classificação temática de textos políticos e governamentais tem uma linha própria, ligada ao Comparative Agendas Project (CAP) e ao seu esquema de tópicos. Osnabrügge, Ash e Morelli \cite{osnabrugge2023} treinam classificadores supervisionados em programas partidários e os aplicam a discursos parlamentares, validando a transferência entre domínios com uma amostra codificada à mão, em que a acurácia varia por tópico. Sebők et al. \cite{sebok2024} constroem a Babel Machine, um serviço de classificação multilíngue nos tópicos do CAP, baseado em modelos de linguagem de código aberto ajustados a corpora codificados por humanos. Gunes e Florczak \cite{gunes2025} testam seis modelos de linguagem de grande porte na classificação de projetos de lei e audiências do Congresso dos Estados Unidos nos tópicos do CAP, em três cenários de envolvimento humano, e encontram F1 ponderado entre 0,44 e 0,82; concluem que a confiança exclusiva em modelos instruídos é insuficiente e que um classificador treinado em dados codificados por humanos supera a melhor combinação de modelos em 13 a 16 pontos percentuais. Esses trabalhos partilham um pressuposto que a versão submetida deste artigo não tinha: a referência de avaliação é uma codificação humana. Aqui, os rótulos de treino vêm de um léxico de termos-âncora, o que configura supervisão fraca no sentido de Ratner et al. \cite{ratner2017}: funções de rotulagem heurísticas, ruidosas e correlacionadas, cujo resultado precisa ser validado contra um conjunto rotulado por humanos. A presente versão adota essa separação: o léxico rotula o treino, e um conjunto-ouro anotado por dois leitores externos mede a qualidade.
+
+%----------------------------------------------------------------------------------------
+\section{Materiais: o corpus das Mensagens ao Congresso Nacional}
+\label{sec:corpus}
+
+O corpus reúne quatro Mensagens Presidenciais ao Congresso Nacional do Brasil, referentes aos anos de 2023 a 2026: documentos institucionais, redigidos pelos ministérios e encaminhados anualmente ao Legislativo, que expõem a situação do país e as diretrizes de governo. Os quatro documentos somam 2.095 páginas e cerca de 693 mil palavras, com volume crescente ao longo do mandato (Tabela~\ref{tab:corpus}). O texto foi extraído com pdfplumber, em blocos de páginas.
+
+\begin{table}[hbt]
+\caption{Catálogo do corpus e unidades de análise por ano. Páginas e palavras contadas nos PDFs, antes da limpeza; parágrafos após a limpeza estrutural (664.182 palavras); rotulados e resíduo conforme a Seção~\ref{sec:rotulagem}.}
+\label{tab:corpus}
+\centering
+\footnotesize
+\begin{tabular}{lrrrrr}
+\toprule
+Ano & Páginas & Palavras & Parágrafos & Rotulados & Resíduo \\
+\midrule
+2023 & 180 & 40.788 & 723 & 422 & 301 \\
+2024 & 333 & 109.205 & 1.518 & 928 & 590 \\
+2025 & 668 & 220.982 & 3.769 & 2.196 & 1.573 \\
+2026 & 914 & 322.582 & 4.747 & 2.824 & 1.923 \\
+\midrule
+Total & 2.095 & 693.557 & 10.757 & 6.370 & 4.387 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Unidade de análise} A unidade é o parágrafo, segmentado pela geometria de linha do PDF (salto vertical entre linhas, recuo de primeira linha, marcador de lista, linha curta com pontuação final), com remontagem de parágrafos na virada de página. A versão submetida deste artigo descrevia a classificação de parágrafos, mas o código segmentava pelo único separador duplo de linha presente no texto extraído, que era a emenda entre páginas; as 2.089 unidades da versão submetida (cerca de 330 palavras em média) eram, de fato, páginas. O erro foi encontrado por conferência aritmética das contagens, depois da submissão, e corrigido nesta versão: a segmentação por geometria produz 11.005 unidades brutas, com mediana de 56 palavras e 5,25 unidades por página. A unidade de página é mantida como contraste metodológico (Seção~\ref{sec:circ}), porque a comparação entre as duas unidades é, ela própria, um resultado sobre o que a métrica mede.
+
+\paragraph{Limpeza estrutural} Uma conferência do corpus feita pelos autores após a submissão (contagem de unidades, leitura de amostras aleatórias de parágrafos e inspeção dos termos mais frequentes) identificou elementos editoriais que não pertencem ao conteúdo da agenda. A limpeza removeu o cabeçalho recorrente ``Mensagem ao Congresso Nacional [ano]'' de todos os parágrafos e eliminou 243 unidades identificadas como estrutura editorial (102 legendas de figura, 54 linhas de sumário, 40 tabelas numéricas, 36 títulos em maiúsculas, 8 páginas de catalogação e 3 listas de autoridades) e 5 unidades com menos de 60 caracteres. O corpus passou de 11.005 para 10.757 parágrafos. A segmentação por geometria ainda deixa dois defeitos, quantificados na Seção~\ref{sec:ouro}: trechos truncados na quebra de página (630 parágrafos, 5,9\%, começam por letra minúscula, acentuada ou não) e, na Mensagem de 2023, o cabeçalho corrido da página interpolado no texto (298 parágrafos, 41\% daquele ano).
+
+\paragraph{Hifenização} A mesma conferência identificou a hifenização tipográfica de fim de linha: palavras quebradas pela diagramação eram preservadas com o hífen e, após a normalização de espaços, viravam pares de fragmentos espúrios. A correção remonta as palavras antes do colapso de espaços, usando o próprio corpus como árbitro para distinguir compostos legítimos que preservam o hífen (``seguro-desemprego'', clíticos como ``trata-se''): 2.679 remontagens, com resíduo de 3 ocorrências. Em parágrafo, a correção altera o rótulo de 27 unidades e eleva o F1-macro do baseline em 0,0018 e o do modelo otimizado em 0,0035; o vocabulário cai de 23.051 para 21.358 tipos. Todos os números do artigo referem-se ao corpus corrigido, e a correção é controlada por uma flag no notebook (Seção~\ref{sec:repro}).
+
+Após limpeza e correção, 6.370 parágrafos recebem uma das nove classes temáticas e 4.387 (40,8\%) ficam no resíduo institucional, reservado às unidades sem âncora temática ou com empate entre classes. As nove classes são: economia e desenvolvimento; programas sociais; saúde; educação e ciência; reforma agrária e agropecuária; política externa; infraestrutura logística; meio ambiente e energia; e governança institucional. Por se tratarem de instrumentos públicos, os quatro documentos são integralmente recuperáveis; os endereços oficiais são listados na Seção~\ref{sec:repro}, e cópias dos PDFs, com os respectivos hashes, acompanham o repositório.
+
+%----------------------------------------------------------------------------------------
+\section{Método: um pipeline reprodutível de categorização semântica}
+\label{sec:metodo}
+
+Esta seção descreve o método como uma cadeia de decisões auditáveis. Cada componente, da rotulagem à seleção de hiperparâmetros, à avaliação e à validação externa, é especificado de modo que um terceiro reexecute o procedimento e obtenha os mesmos números a partir dos artefatos publicados (Seção~\ref{sec:repro}).
+
+\subsection{Visão geral do pipeline}
+
+O pipeline organiza-se em seis estágios encadeados: (i) extração do texto; (ii) limpeza estrutural; (iii) rotulagem fraca por léxico temático; (iv) vetorização por TF-IDF; (v) classificação supervisionada; e (vi) avaliação por validação cruzada estratificada, à qual esta versão acrescenta (vii) a validação externa contra um conjunto-ouro anotado por humanos. Os estágios (i) e (ii) foram descritos na Seção~\ref{sec:corpus}; esta seção detalha os demais, acrescidos da etapa de otimização de hiperparâmetros que configura, de forma automatizada, os estágios (iv) e (v). A Figura~\ref{fig:pipeline} representa o fluxo.
+
+\begin{figure*}[ht]\centering
+	\includegraphics[width=0.92\linewidth]{Fig1_Pipeline}
+	\caption{Visão geral do pipeline. A etapa de otimização parametriza o vetorizador e o classificador; o conjunto-ouro fornece a referência externa ao léxico.}
+	\label{fig:pipeline}
+\end{figure*}
+
+O pipeline é parametrizado e a terminologia de classes é externalizada no léxico, de modo que a aplicação a outro acervo exige substituir os insumos; o método permanece o mesmo. A validação em outros corpora permanece como trabalho futuro.
+
+\subsection{Rotulagem por léxico e a relação entre léxico e aprendizado}
+\label{sec:rotulagem}
+
+Os rótulos de treino foram obtidos por rotulagem fraca: um léxico temático (229 entradas, das quais 223 casáveis pela tokenização em palavra única; cinco termos compostos e um fragmento nunca casam) associa a cada classe um conjunto de termos; para cada parágrafo, contam-se as ocorrências de termos de cada tema, e a classe predominante define o rótulo. Vão para o resíduo institucional os parágrafos sem âncora e os casos de empate entre classes. A estratégia viabiliza o treinamento supervisionado sem anotar manualmente todo o corpus, ao preço de rótulos derivados de regras explícitas em vez de julgamento humano.
+
+O léxico não aprende: aplica regras fixas e está limitado aos termos listados. O classificador generaliza a partir dos exemplos rotulados e pode reconhecer associações entre vocabulário e tema que não constam do léxico. Como os rótulos de treino e de avaliação provêm da mesma fonte, as métricas de validação cruzada medem a concordância do classificador com o léxico; a qualidade semântica da categorização exige uma referência externa. Esta versão trata essa circularidade de duas maneiras: medindo-a diretamente, com um teste que retira do vocabulário os termos-âncora (Seção~\ref{sec:circ}), e construindo um conjunto-ouro anotado por leitores externos, contra o qual as métricas finais e a hipótese H6 são decididas (Seção~\ref{sec:ouro}).
+
+\subsection{Representação vetorial e classificadores}
+
+Os parágrafos são representados pelo modelo TF-IDF, com remoção de acentos em nível Unicode e análise em nível de palavra. Três classificadores são confrontados: Regressão Logística, máquina de vetores de suporte linear (\textit{Support Vector Machine}, SVM) e Random Forest \cite{breiman2001}. Os três operam sobre a mesma matriz TF-IDF, a configuração vetorial selecionada pelo AG (2.352 termos, unigramas, compressão sublinear de frequência), cada um com seu hiperparâmetro de regularização ajustado por grade sobre essa representação. A versão submetida afirmava essa igualdade de representação, mas o seu código media a Regressão Logística e o Random Forest com um vetorizador diferente; a correção é declarada na Seção~\ref{sec:classificadores}. Como a representação foi selecionada em conjunto com o SVM, a comparação responde qual classificador é melhor sobre a representação escolhida; a pergunta sobre o melhor classificador em abstrato fica em aberto.
+
+\subsection{Otimização de hiperparâmetros como etapa auditável}
+
+A configuração do pipeline foi delegada a um Algoritmo Genético (AG) que explora o espaço conjunto de hiperparâmetros do vetorizador e do classificador. O propósito do AG é tornar a seleção de hiperparâmetros uma etapa auditável: cada configuração avaliada, cada operador e cada semente ficam registrados, e a configuração final é rastreável até o procedimento que a produziu.
+
+Cada solução candidata é um cromossomo real de cinco genes (Tabela~\ref{tab:genes}). O parâmetro de regularização $C$ é tratado em escala logarítmica, porque a resposta do classificador é mais uniforme nessa escala. A função de aptidão é o F1-macro em validação cruzada estratificada de três dobras, a mesma métrica e o mesmo protocolo da avaliação (Seção~\ref{sec:protocolo}); o vetorizador integra o pipeline avaliado em cada dobra, de modo que vocabulário e IDF são ajustados apenas na partição de treino. Um cache evita recomputar configurações já vistas. Os operadores são: seleção por torneio de tamanho $k = 3$; recombinação por blend crossover (BLX-$\alpha$, com $\alpha$ sorteado a cada chamada); mutação gaussiana gene a gene, com taxa de 0,30 e desvio-padrão igual a 20\% da amplitude do gene; e elitismo dos dois melhores indivíduos. A execução principal empregou população de 12 indivíduos por 10 gerações e avaliou 106 configurações únicas, contra mais de 20.000 de uma busca exaustiva equivalente; convergiu para SVM linear, vocabulário de 2.352 termos, unigramas, compressão logarítmica de frequência e $C = 0{,}82$. A população e o número de gerações são pequenos por três razões, as duas primeiras de desenho e a terceira verificada. O espaço tem cinco genes, três deles com dois valores (bigramas, compressão, classificador), de modo que a dimensão efetiva é a de dois parâmetros contínuos; cada avaliação de aptidão custa uma validação cruzada de três dobras sobre 6.370 parágrafos, e o orçamento é o que a comparação com a busca aleatória pareia. A verificação está na Figura~\ref{fig:estabilidade}: o melhor indivíduo fixa classificador na geração 1, vocabulário e $C$ na geração 6, e não muda até a geração 10; a diversidade normalizada da população cai de 0,27 para 0,07--0,10; e as 30 repetições com orçamento menor (8 indivíduos por 6 gerações, 41,9 avaliações em média, cerca de 40\% das 106) chegam a 0,917 $\pm$ 0,008, contra 0,921 da execução principal; as partições diferem, e o baseline nas mesmas 30 partições dá 0,853 $\pm$ 0,003 contra 0,853 na partição principal, de modo que a diferença atribuível ao orçamento é de poucos milésimos, e a região do ótimo é encontrada com menos da metade das avaliações. Em espaço maior, ou com avaliações mais baratas, população e gerações deveriam crescer \cite{bischl2023}.
+
+\begin{figure*}[ht]\centering
+	\includegraphics[width=\textwidth]{Fig8_Estabilidade_AG}
+	\caption{Estabilidade do AG na execução principal (12 indivíduos, 10 gerações). (a) Melhor, médio e pior F1-macro da população por geração (o pior da geração 1, 0,135, está fora da escala) e baseline de hiperparâmetros-padrão. (b) Genes do melhor indivíduo por geração, normalizados aos limites do gene, e diversidade da população (desvio-padrão médio dos genes normalizados); a faixa sombreada marca as gerações em que o melhor indivíduo não muda. Os genes binários de bigramas e de compressão logarítmica não foram registrados por geração na execução certificada; a configuração final é unigramas com compressão.}
+	\label{fig:estabilidade}
+\end{figure*}
+
+\begin{table}[hbt]
+\caption{Espaço de busca (cromossomo de cinco genes).}
+\label{tab:genes}
+\centering
+\footnotesize
+\begin{tabular}{clll}
+\toprule
+Gene & Hiperparâmetro & Domínio & Decodificação \\
+\midrule
+0 & max\_features & [500, 3000] & inteiro \\
+1 & ngram\_max & [1, 2] & inteiro (unigrama/bigrama) \\
+2 & sublinear\_tf & \{0, 1\} & booleano \\
+3 & classificador & \{0, 1\} & 0 = RL; 1 = SVM \\
+4 & $C$ (log) & [$-2$, 1] & $C = 10^{\text{gene}}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+O Random Forest não integrou o laço evolutivo, pelo custo computacional, e foi ajustado por grade de 24 combinações (número de árvores, profundidade máxima e atributos por divisão) sobre a representação selecionada pelo AG; a Regressão Logística foi ajustada por grade de $C$ sobre a mesma representação. A diferença no método de ajuste não compromete a comparação entre classificadores, que os confronta em suas melhores configurações sobre a mesma representação.
+
+\subsection{Protocolo de validação}
+\label{sec:protocolo}
+
+A avaliação emprega validação cruzada estratificada de três dobras, com vocabulário e IDF ajustados apenas na partição de treino de cada dobra; isso vale para todas as rotinas do trabalho (função de aptidão, baseline, repetições, busca aleatória, grades, matriz de confusão, análise temporal, validação aninhada e teste de circularidade), porque o vetorizador integra um \texttt{Pipeline} do scikit-learn avaliado por \texttt{cross\_val\_score} ou \texttt{cross\_val\_predict}. A métrica primária é o F1-macro, pela classe menor (reforma agrária, 344 parágrafos) e pela média não ponderada entre as nove classes; acurácia, precisão e revocação são complementares. A semente aleatória foi fixada em 42.
+
+\paragraph{Validação aninhada} Para separar a seleção de hiperparâmetros da estimativa de generalização, reporta-se o F1-macro sob validação cruzada aninhada: laço externo de cinco dobras estratificadas; laço interno de três dobras com busca aleatória de 20 configurações no espaço da Tabela~\ref{tab:genes}; o classificador escolhido em cada dobra externa é reportado. A estimativa aninhada é a generalização do procedimento de seleção, e o F1 do AG é o da configuração selecionada; a versão submetida subtraía um do outro como ``otimismo de seleção'', o que compara seletores diferentes e foi retirado.
+
+\paragraph{Duas construções de 30 observações} A primeira compara AG, baseline e busca aleatória: a observação $i$ ($i = 0$ a 29) é o F1-macro médio em três dobras da melhor configuração encontrada sob a semente $i$; baseline, AG e busca aleatória usam a mesma partição gerada pela semente $i$, o que define o pareamento; o AG é inicializado com a semente $i$ e a busca aleatória com $i + 1000$. As 30 observações reutilizam os mesmos 6.370 parágrafos; apenas a partição varia, de modo que a inferência vale para este corpus sob repartição, e os valores de $p$ não devem ser lidos como generalização a outros corpora. Nessas repetições o AG usa uma configuração reduzida (8 indivíduos, 6 gerações), e o número efetivo de avaliações únicas é registrado em cada semente: 41,9 $\pm$ 1,2 (mínimo 40, máximo 44). A busca aleatória recebe, na mesma semente, exatamente esse orçamento; a versão submetida fixava 38 avaliações sem medir o orçamento efetivo do AG. A segunda construção compara os classificadores: 30 escores de dobra de uma validação estratificada repetida (3 $\times$ 10), pareados por dobra, com o mesmo vetorizador. As dobras de uma mesma repetição compartilham dois terços do treino, e as repetições reutilizam o corpus, de modo que as 30 observações não são independentes e o teste tende a superestimar a evidência; por isso só são interpretados como detectados os efeitos grandes (rank-biserial acima de 0,9), e a comparação entre Regressão Logística e Random Forest fica como não detectada.
+
+\paragraph{Métricas} Para cada classe $k$, com $VP_k$, $FP_k$ e $FN_k$ os verdadeiros positivos, falsos positivos e falsos negativos contra a referência, precisão é $P_k = VP_k/(VP_k + FP_k)$, revocação é $R_k = VP_k/(VP_k + FN_k)$ e $\mathrm{F1}_k = 2P_kR_k/(P_k + R_k)$; o suporte é o número de unidades da classe $k$ na referência. As médias macro são as médias aritméticas simples de $P_k$, $R_k$ e $\mathrm{F1}_k$ sobre as classes, sem ponderação pelo suporte, e a acurácia é a fração de unidades com predição igual à referência. O F1-macro é a métrica principal porque as classes são desbalanceadas (suportes de 344 a 1.117) e a média simples pesa igualmente as classes pequenas.
+
+\paragraph{Testes} As comparações pareadas usam o teste de Wilcoxon de postos sinalizados, ao nível de 0,05, com tamanho de efeito rank-biserial. Os testes de otimização e de classificadores são unilaterais, na direção da hipótese (AG acima do baseline e da busca aleatória; SVM acima dos demais); o teste de circularidade é bilateral. Onde há mais de um teste sobre as mesmas observações, o valor de $p$ bilateral também é reportado, para leitura sob Bonferroni. Um valor de $p$ acima do nível é descrito como diferença não detectada; equivalência exigiria um teste próprio, com margem declarada, que não foi realizado. O confronto AG $\times$ busca aleatória de mesmo orçamento é um teste de suficiência: isola a contribuição da estratégia de busca da contribuição do orçamento de avaliações.
+
+\subsection{Teste de circularidade e conjunto-ouro}
+\label{sec:circ}
+
+\paragraph{Teste de circularidade} Para medir quanto da métrica contra o léxico é detecção dos próprios termos-âncora, o SVM selecionado é avaliado em três condições de vocabulário: completo; sem as âncoras (os termos do léxico são tratados como \emph{stop words}, normalizados como o vetorizador os normaliza); e só com as âncoras (vocabulário restrito a elas). O desenho é repetido nas duas unidades de análise (página, com 1.518 unidades rotuladas, e parágrafo, com 6.370), com 30 medidas pareadas por condição (validação estratificada repetida 3 $\times$ 10), sobre os corpora registrados. O filtro remove os tokens exatos das âncoras; flexões e derivados (``econômicas'', ``hospitalar'') permanecem no vocabulário sem âncoras, de modo que a queda medida subestima a parcela da métrica que é detecção de termo.
+
+\paragraph{Conjunto-ouro} Um protocolo de anotação, declarado antes da anotação e disponibilizado nos artefatos, definiu a amostra, o instrumento, as medidas e a regra de decisão de H6. A amostra tem 540 parágrafos sorteados com semente fixa: 450 rotulados pelo léxico (50 por classe, distribuídos pelos quatro anos proporcionalmente, com mínimo de cinco por célula) e 90 do resíduo institucional, estratificados por ano. Ficaram fora do quadro amostral as unidades com menos de 15 palavras ou com parêntese sem fechamento (378, 3,5\% do corpus). Dois anotadores externos, das Ciências Sociais, sem envolvimento com o léxico nem com o artigo, anotaram de forma independente, recebendo apenas o identificador e o texto de cada parágrafo, em ordem aleatória, sem o ano, sem os parágrafos vizinhos e sem o rótulo do léxico. O instrumento (planilha com instruções e definições) traz as nove classes definidas por assunto, sem listar termos, com os casos limítrofes de cada uma; sete regras de decisão (predominância, finalidade sobre instrumento, parágrafo misto, resíduo institucional, tema fora do esquema, não classificável e uso exclusivo do texto apresentado); e o código RES para o resíduo e NC para o não classificável. Dois pilotos precederam a amostra principal e ficaram fora da medição: no primeiro (50 itens) o $\kappa$ de Cohen foi 0,34, e a reunião de calibração reescreveu as regras de resíduo, não classificável e parágrafo misto; no segundo (22 itens), com as regras revisadas, 0,73.
+
+As medidas, declaradas antes da anotação, são: concordância bruta, $\kappa$ de Cohen com intervalo de confiança por bootstrap (2.000 reamostras), $\alpha$ de Krippendorff, $\kappa$ binário por classe, $\kappa$ de cada anotador contra o léxico e recuperação do resíduo. O espaço de classes é o do artigo (nove classes mais o resíduo); itens marcados NC por qualquer anotador saem das medidas e são reportados à parte. Os itens em que os dois anotadores concordam formam o ouro diretamente; os demais foram extraídos para uma planilha de desempate, sem os rótulos e em ordem aleatória, anotada pelo primeiro autor como terceiro voto, cego aos rótulos dos anotadores (o autor conhece o léxico, e a cegueira vale para os rótulos); onde o voto coincide com um dos anotadores, o ouro é a maioria. Os itens em que as três leituras diferem foram submetidos a uma reconciliação escrita entre os dois anotadores externos, independente e em duas rodadas: cada um recebeu as três leituras anonimizadas, em ordem sorteada, e decidiu um código final com justificativa obrigatória; na segunda rodada, só com os itens ainda divergentes, cada um leu a justificativa do outro e pôde mudar uma vez. Códigos finais coincidentes formam o ouro; os demais ficam fora, como sem consenso. Uma devolução da primeira rodada chegou sem justificativas e foi recusada pela regra; o anotador reenviou com justificativas, sem acesso aos códigos do outro, e 8 dos 34 códigos mudaram entre as duas devoluções (a primeira fica arquivada nos artefatos). O primeiro autor não votou nessa etapa, que substituiu, por desvio datado no protocolo, a reunião dos três prevista originalmente. A regra de decisão de H6, fixada antes de qualquer cálculo: H6 (F1-macro do paradigma clássico abaixo de 0,75) é confirmada se o F1-macro do SVM contra o ouro, com predições fora da dobra, e o limite superior do seu intervalo de 95\% ficarem abaixo de 0,75; refutada se a estimativa e o limite inferior ficarem acima; inconclusiva se o intervalo contiver 0,75. Como sensibilidade, o F1 é recalculado só sobre os itens de concordância direta, em que o primeiro autor não teve participação, e só sobre os itens sem defeito de segmentação.
+
+%----------------------------------------------------------------------------------------
+\section{Configuração experimental}
+\label{sec:config}
+
+Os experimentos foram conduzidos em ambiente Google Colab (Python 3.13.16), com scikit-learn 1.6.1 \cite{pedregosa2011} (vetorização, classificadores e validação cruzada), pandas 2.2.3 e numpy 2.1.3, pdfplumber 0.11.10 (extração dos PDFs), scipy 1.16.3 (testes estatísticos) e matplotlib 3.10.0 (figuras). As versões de Python, numpy e pandas diferem das usadas na versão submetida (3.12, 2.0.2 e 2.2.2), e a reprodução dos resultados da execução de referência foi exata mesmo assim (Seção~\ref{sec:repro}). A semente aleatória foi fixada em 42 em toda a cadeia.
+
+A avaliação dos classificadores empregou validação cruzada estratificada de três dobras sobre os 6.370 parágrafos rotulados. Para a medição de tempos, usou-se uma divisão holdout estratificada de 75/25. A otimização por AG usou população de 12 indivíduos por 10 gerações na execução principal (106 avaliações únicas) e configuração reduzida (8 indivíduos, 6 gerações; 41,9 $\pm$ 1,2 avaliações únicas) nas 30 execuções de validação estatística. A validação aninhada usou 20 configurações por dobra externa. O teste de circularidade e as comparações entre classificadores usaram 30 dobras pareadas (3 $\times$ 10).
+
+%----------------------------------------------------------------------------------------
+\section{Resultados e discussão}
+\label{sec:resultados}
+
+Os resultados seguem a ordem: desempenho dos classificadores contra o léxico (6.1), otimização de hiperparâmetros (6.2), matriz de confusão (6.3), sobreajuste (6.4), análise temporal exploratória (6.5), circularidade e conjunto-ouro (6.6) e o confronto das hipóteses (6.7). Os valores das Seções 6.1 a 6.5 e da Tabela~\ref{tab:circ} foram gerados pela execução certificada do notebook (Seção~\ref{sec:repro}). As predições fora da dobra usadas contra o conjunto-ouro e as frações da Seção 6.3 vêm de uma reexecução do mesmo pipeline, com os mesmos parâmetros e sementes, no script que monta o ouro (F1-macro de 0,9202 contra 0,9209 da execução certificada, diferença de quatro a cinco parágrafos em 6.370).
+
+\subsection{Comparação dos classificadores}
+\label{sec:classificadores}
+
+A Tabela~\ref{tab:classificadores} apresenta os três algoritmos em suas melhores configurações sobre a mesma representação. O SVM linear obteve o melhor F1-macro em validação cruzada (0,921), seguido do Random Forest (0,917; 300 árvores, profundidade livre, $\log_2$ dos atributos por divisão) e da Regressão Logística (0,909; $C = 10$); o baseline de hiperparâmetros-padrão (Regressão Logística com 1.000 termos) fica em 0,853. Em 30 dobras pareadas (3 $\times$ 10), as médias são 0,918 $\pm$ 0,005 (SVM), 0,910 $\pm$ 0,006 (Regressão Logística) e 0,908 $\pm$ 0,006 (Random Forest); o SVM supera a Regressão Logística em 29 de 30 dobras ($W = 463$; $p < 10^{-4}$; $r = 0{,}99$) e o Random Forest em 29 de 30 ($W = 461$; $r = 0{,}98$); entre Regressão Logística e Random Forest a diferença não é detectada ($p = 0{,}065$; 17 de 30; $r = 0{,}32$). A estimativa de generalização por validação aninhada é 0,913 $\pm$ 0,003, com o SVM escolhido em três das cinco dobras externas e a Regressão Logística nas outras duas.
+
+\begin{table}[hbt]
+\caption{Desempenho dos três classificadores sobre a representação selecionada pelo AG (F1-macro contra os rótulos do léxico). CV: validação cruzada de três dobras, semente 42; 30 dobras: média $\pm$ desvio em validação repetida 3 $\times$ 10. Para a configuração-padrão, a segunda coluna traz a média $\pm$ desvio das 30 execuções pareadas por semente (Seção~\ref{sec:protocolo}).}
+\label{tab:classificadores}
+\centering
+\small
+\begin{tabular}{llcc}
+\toprule
+Algoritmo & Ajuste & F1 (CV) & F1 (30 dobras) \\
+\midrule
+SVM linear & AG & 0,921 & 0,918 $\pm$ 0,005 \\
+Random Forest & grade (24) & 0,917 & 0,908 $\pm$ 0,006 \\
+Regressão Logística & grade de $C$ & 0,909 & 0,910 $\pm$ 0,006 \\
+Configuração-padrão & nenhum & 0,853 & 0,853 $\pm$ 0,003$^{*}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+As métricas agregadas do SVM, com predições fora da dobra, são acurácia 0,923, precisão-macro 0,926, revocação-macro 0,917 e F1-macro 0,921. A Tabela~\ref{tab:tempos} mostra os tempos em holdout: o SVM é o mais rápido a treinar e a predizer; no holdout único, o Random Forest (0,926) fica acima do SVM (0,924), e o teste pareado em 30 dobras, que prevalece, diz o contrário. O detalhamento por classe (Tabela~\ref{tab:classes}) mostra F1 entre 0,88 (reforma agrária e agropecuária, com a menor revocação, 0,84) e 0,95 (saúde).
+
+\begin{table}[hbt]
+\caption{Tempos e desempenho em holdout estratificado 75/25, sobre a representação do AG.}
+\label{tab:tempos}
+\centering
+\small
+\begin{tabular}{lrrc}
+\toprule
+Algoritmo & Treino (s) & Predição (s) & F1 (holdout) \\
+\midrule
+SVM linear & 0,76 & 0,17 & 0,924 \\
+Regressão Logística & 1,96 & 0,25 & 0,914 \\
+Random Forest & 9,74 & 0,40 & 0,926 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[hbt]
+\caption{Métricas por classe do SVM otimizado contra os rótulos do léxico (predições fora da dobra, três dobras).}
+\label{tab:classes}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccr}
+\toprule
+Classe & Precisão & Revocação & F1 & Suporte \\
+\midrule
+Economia e desenvolvimento & 0,91 & 0,93 & 0,92 & 1.117 \\
+Educação e ciência & 0,95 & 0,93 & 0,94 & 853 \\
+Governança institucional & 0,90 & 0,92 & 0,91 & 720 \\
+Infraestrutura logística & 0,93 & 0,92 & 0,93 & 552 \\
+Meio ambiente e energia & 0,92 & 0,95 & 0,94 & 1.016 \\
+Política externa & 0,92 & 0,90 & 0,91 & 522 \\
+Programas sociais & 0,92 & 0,92 & 0,92 & 720 \\
+Reforma agrária e agropecuária & 0,93 & 0,84 & 0,88 & 344 \\
+Saúde & 0,95 & 0,95 & 0,95 & 526 \\
+\midrule
+Média macro (total) & 0,926 & 0,917 & 0,921 & 6.370 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Otimização de hiperparâmetros}
+
+A análise separa duas perguntas: otimizar compensa? e a estratégia evolutiva é necessária? Quanto à primeira, em 30 execuções pareadas por semente o AG superou a configuração-padrão em todas (0,917 $\pm$ 0,008 contra 0,853 $\pm$ 0,003; $W = 465$; $p < 10^{-6}$; $r = 1{,}00$). A melhor configuração elevou o F1-macro de 0,853 para 0,921, ganho de 7,9\%. Os hiperparâmetros têm impacto material.
+
+Quanto à segunda, confrontado com a busca aleatória de orçamento pareado por semente (41,9 $\pm$ 1,2 avaliações), o AG vence em 24 das 30 execuções (0,917 $\pm$ 0,008 contra 0,915 $\pm$ 0,005; $W = 332$; $p$ unilateral $= 0{,}020$, bilateral $= 0{,}040$; $r = 0{,}43$), com mediana de $+0{,}0035$ em F1 (Figura~\ref{fig:agrs}). Em página, a diferença não é detectada ($p = 0{,}118$). Em um espaço de cinco genes, a busca aleatória é um competidor forte \cite{bergstra2012}, e a diferença, quando detectada, é pequena: estatisticamente detectada, sem significância prática. O ganho material vem da otimização em si; o AG entra no pipeline como dispositivo de registro, que fixa e documenta a configuração em 106 avaliações (estabilidade na Figura~\ref{fig:estabilidade}), sem ser fonte relevante de ganho de desempenho.
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=\linewidth]{Fig6_AG_vs_Random_vs_Baseline}
+	\caption{AG, busca aleatória de orçamento pareado e baseline em 30 execuções pareadas por semente (F1-macro contra o léxico); colchetes com o valor de $p$ do teste de Wilcoxon e a contagem de vitórias.}
+	\label{fig:agrs}
+\end{figure}
+
+\subsection{Matriz de confusão e análise de erros}
+
+A matriz de confusão do SVM (Figura~\ref{fig:matriz}, normalizada por linha, predições fora da dobra) tem a diagonal entre 0,84 e 0,95. A maior fonte de confusão é reforma agrária e agropecuária: 16\% dos seus parágrafos vão para outras classes, sobretudo economia e desenvolvimento (4,7\%), meio ambiente e energia (3,2\%) e governança institucional (3,2\%); segue-se política externa (revocação 0,90), que perde 3,4\% para economia e 2,5\% para meio ambiente. Economia e desenvolvimento, a classe majoritária e de vocabulário mais amplo, é o destino mais frequente dos erros de todas as demais classes. A versão submetida, em página, apontava economia e programas sociais como maior fonte de confusão; em parágrafo, esse eixo não se destaca.
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=\linewidth]{Fig4_Matriz_Confusao}
+	\caption{Matriz de confusão normalizada por linha (SVM otimizado, predições fora da dobra, contra os rótulos do léxico).}
+	\label{fig:matriz}
+\end{figure}
+
+\subsection{Análise de sobreajuste}
+
+A Tabela~\ref{tab:sobreajuste} confronta o F1 de treino com o de validação cruzada sobre o conjunto rotulado. Os três modelos alcançam F1 próximo de 1,000 no treino, com diferença para a validação entre 0,078 (SVM) e 0,091 (Regressão Logística). O intervalo reflete a combinação de uma representação de alta dimensionalidade com um corpus de alguns milhares de parágrafos; a ordenação entre algoritmos preserva-se, e o SVM mantém o melhor desempenho e o menor sobreajuste.
+
+\begin{table}[hbt]
+\caption{Sobreajuste: F1 de treino contra F1 em validação cruzada de três dobras sobre os 6.370 parágrafos rotulados.}
+\label{tab:sobreajuste}
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Algoritmo & F1 treino & F1 validação & Diferença \\
+\midrule
+SVM linear & 0,999 & 0,921 & 0,078 \\
+Regressão Logística & 1,000 & 0,909 & 0,091 \\
+Random Forest & 1,000 & 0,917 & 0,083 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Análise temporal exploratória}
+\label{sec:temporal}
+
+Esta análise ilustra o uso do pipeline e produz tendências descritivas, sem teste de hipótese e sem inferência causal. As proporções da Figura~\ref{fig:temporal} são computadas sobre as predições fora da dobra do SVM (\texttt{cross\_val\_predict}, três dobras estratificadas, semente 42) para os parágrafos rotulados pelo léxico (denominadores anuais na Tabela~\ref{tab:corpus}; o resíduo institucional, de 38,9\% a 41,7\% do ano, fica fora). A composição predita difere da composição dos rótulos do léxico em no máximo 1,2 pontos percentuais por classe e ano. Nenhuma classe varia mais de 10 pontos percentuais entre anos consecutivos; as maiores variações são infraestrutura logística, de 1,9\% em 2023 para 10,3\% em 2024, e governança institucional, de 19,7\% para 12,2\% no mesmo intervalo (em página, governança variava 11,8 pontos, e 15,4 na versão submetida, antes da correção de hifenização, o que mostra a sensibilidade do achado à unidade de análise e ao pré-processamento). Entre 2023 e 2026, três classes variam 5 pontos ou mais: governança ($-8{,}4$), infraestrutura ($+7{,}2$) e educação e ciência ($+7{,}0$); são as destacadas na figura. As três variações estão ancoradas em 2023, e a Mensagem daquele ano é de outro gênero e tamanho: um documento programático de 180 páginas, redigido no primeiro mês do mandato, com 422 parágrafos rotulados (os 1,9\% de infraestrutura são 8 parágrafos), enquanto as seguintes são relatórios de atividades de 333 a 914 páginas. A diferença entre 2023 e os demais anos mede, em primeiro lugar, essa mudança de gênero, e os destaques da figura devem ser lidos com essa ressalva. O cabeçalho interpolado de 2023 (Seção~\ref{sec:corpus}) não a explica: excluir os 174 parágrafos rotulados daquele ano que o contêm desloca a composição de 2023 em no máximo 1,9 ponto (na composição do léxico) e mantém o sentido de todas as variações; muda, porém, quem fica acima do corte de 5 pontos (educação passa a $+4{,}9$; economia a $-6{,}6$; política externa a $+5{,}7$), o que lembra que o corte é um recurso de leitura, sem significado próprio. Em 2026, em relação à média de 2023--2025, programas sociais varia $-1{,}7$ ponto e política externa $+1{,}9$ ponto; o padrão ``mais agenda social, menos agenda externa'' que se poderia associar a um ciclo eleitoral não é observado. Depois da Seção~\ref{sec:ouro}, essas proporções devem ser lidas como composição do léxico aplicado ao corpus; a medida da agenda exige a referência externa.
+
+\begin{figure*}[ht]\centering
+	\includegraphics[width=\textwidth]{Fig7_Diacronica_Agenda}
+	\caption{Composição temática por ano (2023--2026): proporção de cada classe entre os parágrafos rotulados do ano, por predição fora da dobra do SVM; análise exploratória. Painéis ordenados pela participação média. Em laranja, com os valores de 2023 e 2026 anotados, as classes cuja proporção variou 5 pontos percentuais ou mais entre 2023 e 2026; as demais em cinza.}
+	\label{fig:temporal}
+\end{figure*}
+
+\subsection{Circularidade e resultados contra o conjunto-ouro}
+\label{sec:ouro}
+
+\paragraph{Teste de circularidade} A Tabela~\ref{tab:circ} resume o desenho 2 $\times$ 3. Em parágrafo, retirar os termos-âncora do vocabulário reduz o F1-macro contra o léxico de 0,918 para 0,544 (queda de 40,8\%); restringir o vocabulário às 175 âncoras presentes eleva-o a 0,988. Em página, a queda é de 0,802 para 0,669 (16,5\%), e as 157 âncoras sozinhas dão 0,888. Nas duas unidades, as 30 diferenças pareadas têm o mesmo sinal ($W = 0$; $p = 1{,}9 \times 10^{-9}$). A métrica contra o léxico mede, em grande parte, detecção de termo, e mede mais em parágrafo do que em página, porque a unidade menor concentra as âncoras que definiram o rótulo.
+
+\begin{table*}[ht]
+\caption{Teste de circularidade 2 $\times$ 3: F1-macro do SVM contra os rótulos do léxico (média $\pm$ desvio em 30 medidas pareadas), por unidade e vocabulário.}
+\label{tab:circ}
+\centering
+\small
+\begin{tabular}{lcccr}
+\toprule
+Unidade & Completo & Sem âncoras & Só âncoras & Queda \\
+\midrule
+Página (1.518) & 0,802 $\pm$ 0,016 & 0,669 $\pm$ 0,015 & 0,888 $\pm$ 0,012 & 16,5\% \\
+Parágrafo (6.370) & 0,918 $\pm$ 0,005 & 0,544 $\pm$ 0,008 & 0,988 $\pm$ 0,002 & 40,8\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Anotação} Os dois anotadores externos completaram os 540 itens (cerca de 5 e 10 horas, em sessões registradas). Dez itens (1,9\%) receberam NC de pelo menos um deles e saíram das medidas. Nos 530 válidos, a concordância bruta foi 0,647, o $\kappa$ de Cohen 0,606 [IC 95\% 0,558; 0,649] e o $\alpha$ de Krippendorff 0,605; nos 391 itens em que ambos declararam confiança alta, $\kappa = 0{,}70$. Na escala usual \cite{landis1977}, a concordância é substancial, no limite inferior dessa faixa. O $\kappa$ binário por classe vai de 0,87 (saúde) e 0,80 (educação) a 0,50 (governança), 0,44 (resíduo) e 0,34 (economia); as confusões mais frequentes entre os anotadores são governança $\times$ resíduo, economia $\times$ resíduo e programas sociais $\times$ governança. Cada anotador concordou com o rótulo do léxico em 0,60 e 0,54 dos 444 itens rotulados válidos ($\kappa$ de 0,55 e 0,50).
+
+\paragraph{Origem do ouro} 343 itens (63,5\% da amostra) por concordância direta; 153 (28,3\%) por maioria com o voto cego do primeiro autor, que coincidiu com um dos anotadores em 153 dos 187 desacordos válidos (com o primeiro anotador em 100, com o segundo em 53); 20 (3,7\%) por reconciliação escrita dos 34 itens com três leituras distintas (17 na primeira rodada, 3 na segunda; o código acordado foi a leitura original do primeiro anotador em 10, a do segundo em 8 e a do voto cego em 2); 14 (2,6\%) sem consenso após as duas rodadas, fora do ouro (em 3 deles os dois anotadores trocaram de posição na segunda rodada, cada um adotando o código do outro, o artefato clássico da mudança simultânea; a regra prévia os exclui, e o cenário extremo abaixo os cobre); 10 excluídos por NC. O ouro tem 516 itens. Dos 90 itens sorteados do resíduo do léxico, 82 entraram no ouro (4 saíram por NC e 4 ficaram sem consenso); desses 82, 79 (96\%) receberam uma das nove classes (governança 17, meio ambiente 13, economia 10, programas sociais 9, educação 9, infraestrutura 9, saúde 5, reforma agrária 4, política externa 3).
+
+\paragraph{Desempenho contra o ouro} A Tabela~\ref{tab:ouro} apresenta a comparação pré-registrada e as sensibilidades. O F1-macro do SVM, com predições fora da dobra e espaço de dez códigos, é 0,579 [0,536; 0,616] sobre os 434 itens rotulados do ouro, com acurácia 0,618. Como o SVM nunca prediz RES, os 38 itens cujo ouro é RES entram com F1 zero nessa classe, e a média de dez códigos é 0,9 da média das nove classes: 0,643 [0,595; 0,684] com esses 38 itens contados como erro, e 0,672 [0,627; 0,713] sobre os 396 itens cujo ouro é uma das nove classes. Só sobre os itens de concordância direta, 0,649 [0,600; 0,691]; só sobre os itens sem defeito de segmentação, 0,569 [0,522; 0,609]. Contra cada anotador isoladamente, sem adjudicação, o SVM fica em 0,562 e 0,552; o ouro adjudicado é, portanto, um pouco mais favorável ao classificador do que qualquer um dos dois leitores. Os 14 itens sem consenso não decidem nada: mesmo que o ouro deles fosse a predição do SVM, o F1 seria 0,589. O rótulo do léxico (classe ou resíduo), que é o que o pipeline entrega para cada parágrafo, tem F1 de 0,534 [0,493; 0,569] e acurácia 0,523 sobre os 516 itens; ponderada por pós-estratificação para o corpus, com pesos por classe do léxico, a acurácia do rótulo do léxico é 0,376 [0,344; 0,410] (bootstrap por estrato, com os pesos recalculados em cada reamostra), e o número decompõe-se em cobertura de 59\% com acurácia ponderada de 0,61 nos parágrafos rotulados (0,62 na amostra balanceada) e acurácia de 0,04 nos 41\% do resíduo. Por classe, o rótulo do léxico categoriza bem saúde (F1 0,84 contra o ouro) e educação (0,77), e mal governança (0,43), economia (0,42) e programas sociais (0,45); o SVM segue o mesmo perfil (0,89, 0,85, 0,46, 0,46 e 0,49), e são as mesmas classes em que os anotadores menos concordaram entre si. Nos mesmos 434 itens, o léxico e o SVM acertam o ouro em 61,5\% e 61,8\%, e coincidem entre si em 91\%: o classificador reproduz o léxico, e herda a sua qualidade.
+
+\begin{table*}[ht]
+\caption{Desempenho contra o conjunto-ouro (F1-macro com IC 95\% por bootstrap, 2.000 reamostras; espaço de dez códigos, salvo indicação). $^{\dagger}$Experimento complementar, não pré-registrado: média de 10 repetições da validação cruzada; IC por bootstrap sobre itens das predições fora da dobra.}
+\label{tab:ouro}
+\centering
+\small
+\begin{tabular}{lrcc}
+\toprule
+Comparação & $n$ & F1-macro & IC 95\% \\
+\midrule
+SVM $\times$ ouro, rotulados (pré-registrada) & 434 & 0,579 & [0,536; 0,616] \\
+\quad nove classes, itens com ouro RES contados como erro & 434 & 0,643 & [0,595; 0,684] \\
+\quad nove classes, só itens com ouro em uma das nove & 396 & 0,672 & [0,627; 0,713] \\
+\quad só concordância direta dos anotadores & 299 & 0,649 & [0,600; 0,691] \\
+\quad só itens sem defeito de segmentação & 351 & 0,569 & [0,522; 0,609] \\
+SVM $\times$ anotador 1, sem adjudicação & 434 & 0,562 & [0,520; 0,598] \\
+SVM $\times$ anotador 2, sem adjudicação & 434 & 0,552 & [0,509; 0,588] \\
+Léxico $\times$ ouro, todos os itens & 516 & 0,534 & [0,493; 0,569] \\
+\midrule
+SVM treinado no ouro (VC 5 $\times$ 10), dez códigos$^{\dagger}$ & 516 & 0,635 & [0,595; 0,667] \\
+\quad nove classes$^{\dagger}$ & 475 & 0,661 & [0,624; 0,693] \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Treino com rótulos humanos} Um experimento complementar, não pré-registrado, pergunta se o limite é do paradigma ou da supervisão: o mesmo SVM (vetorizador do pipeline, com vocabulário e IDF ajustados no corpus inteiro sem supervisão, e o mesmo $C$), treinado nos rótulos do ouro e avaliado por validação cruzada estratificada repetida (5 $\times$ 10) sobre os 516 itens, alcança F1-macro de 0,635 [0,595; 0,667] em dez códigos e 0,661 [0,624; 0,693] em nove classes (amplitude entre repetições de 0,616 a 0,646 e de 0,643 a 0,683; com $C = 1$ ou vocabulário ajustado só nas dobras de treino, entre 0,632 e 0,666). Dois fatos saem dessa conta. Primeiro, 516 rótulos humanos ficam no patamar de 6.370 rótulos fracos contra a mesma referência (0,661 contra 0,672 nas nove classes). Segundo, o ouro é aprendido quase tão bem quanto o próprio rótulo do léxico, que é uma regra determinística e só é aprendido a 0,708 com os mesmos itens; o teto, neste tamanho de amostra, é o próprio tamanho da amostra; a natureza do rótulo não o explica. A curva de aprendizado não saturou (0,554 com metade dos itens, 0,598 com três quartos), e o texto não a extrapola: a questão de o paradigma clássico ultrapassar 0,75 com supervisão humana fica aberta, a ser decidida com um conjunto-ouro maior.
+
+\paragraph{Segmentação} Na amostra, 110 itens (20\%) têm algum defeito de segmentação: cabeçalho de página interpolado (31, todos de 2023), início truncado (33) ou ausência de pontuação final (60). Nesses itens a concordância entre anotadores foi 0,61 ($\kappa$ 0,56), contra 0,66 ($\kappa$ 0,62) nos 430 limpos, e NC ocorreu em 8 dos 110 contra 2 dos 430; os anotadores classificaram 93\% dos itens defeituosos. O defeito não explica o resultado contra o ouro (F1 de 0,569 nos itens limpos); é uma limitação do pipeline de extração e fica declarado.
+
+\paragraph{Leitura} O F1 de 0,921 em validação cruzada mede concordância com o próprio léxico; contra leitores independentes, o mesmo classificador fica em 0,579 (0,672 excluindo o resíduo). A diferença, entre 0,25 e 0,34 de F1 conforme o tratamento do resíduo, é o custo da circularidade, agora medido; os dois valores não são comparáveis termo a termo (o primeiro é medido em nove classes, sobre 6.370 parágrafos com a distribuição do corpus; o segundo, em dez códigos, sobre uma amostra balanceada por classe), e o intervalo é o que os dados sustentam. O resíduo do léxico não é ``outros'': 79 dos 82 parágrafos do resíduo que entraram no ouro têm uma classe para leitores humanos, o que derruba a acurácia estimada para o corpus a 0,38. O gargalo está na rotulagem fraca; o classificador apenas a reproduz. Parte do erro, contudo, pertence ao esquema de classes: governança, economia e programas sociais são as classes em que o pipeline mais falha, em que os anotadores menos concordam ($\kappa$ por classe de 0,34 a 0,54) e em que se concentram os 14 itens sem consenso (entre as três leituras originais, economia está em 9 deles, programas sociais em 8, governança em 6). Nessas fronteiras, a unidade parágrafo mistura diagnóstico, instrumento e público-alvo, e um rótulo único é uma decisão de leitura, mais do que uma propriedade do texto; a definição operacional dessas três classes é um problema anterior ao método.
+
+\subsection{Confronto das hipóteses}
+
+A Tabela~\ref{tab:hipoteses} sintetiza o veredito das seis hipóteses operacionais. H1 (separabilidade linear) confirma-se para o SVM, que supera o Random Forest em 29 de 30 dobras; entre Regressão Logística e Random Forest a diferença não é detectada. H2 (revocação abaixo de 0,5 nas classes pequenas) é refutada contra o léxico: a menor revocação é 0,84 (reforma agrária). H3 e H4, da análise exploratória, deixam de ser confirmadas ou refutadas e passam a observadas ou não observadas sob o critério declarado: H3 (nenhuma classe varia 10 pontos entre anos consecutivos) é observada; H4 (inflexão pré-eleitoral em 2026, com mais agenda social e menos agenda externa) não é observada. H5 (emaranhamento econômico) é parcialmente confirmada: economia é o destino mais frequente dos erros, mas a maior fonte de confusão é reforma agrária, e o eixo economia $\times$ programas sociais não se destaca em parágrafo. H6 (F1-macro do paradigma clássico abaixo de 0,75) é confirmada pela regra pré-registrada: 0,579 [0,536; 0,616] contra o ouro, com limite superior abaixo de 0,75 em todas as sensibilidades (máximo 0,713). A versão submetida refutava H6 com 0,807 contra o léxico; o conjunto-ouro inverte o veredito. O alcance do teste deve ser lido com precisão: o que foi medido é o pipeline clássico supervisionado pelo léxico, e o resultado limita essa supervisão; o experimento complementar com rótulos humanos (0,635 com 516 itens, curva não saturada) não decide a questão para o paradigma, e o enunciado de H6, tal como pré-registrado, não a exclui.
+
+\begin{table*}[ht]
+\caption{Síntese do confronto das hipóteses.}
+\label{tab:hipoteses}
+\centering
+\small
+\begin{tabular}{clp{7.2cm}}
+\toprule
+Hip. & Enunciado & Veredito \\
+\midrule
+H1 & Separabilidade linear (lineares $>$ Random Forest) & Confirmada para o SVM (29/30); LR $\times$ RF não detectada \\
+H2 & Revocação $<$ 0,5 nas classes pequenas & Refutada contra o léxico (mínima 0,84) \\
+H3 & Continuidade temática ($<$ 10 p.p. entre anos) & Observada (exploratória) \\
+H4 & Inflexão pré-eleitoral em 2026 & Não observada (exploratória) \\
+H5 & Emaranhamento econômico & Parcialmente confirmada (economia como destino; reforma agrária como fonte) \\
+H6 & Limite do paradigma clássico, supervisionado pelo léxico (F1 $<$ 0,75) & Confirmada contra o ouro: 0,579 [0,536; 0,616] \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+%----------------------------------------------------------------------------------------
+\section{Reprodutibilidade}
+\label{sec:repro}
+
+A semente aleatória foi fixada em 42 em toda a cadeia, da partição de validação aos operadores do AG; as 30 execuções usam sementes registradas (0 a 29), pareadas entre AG, baseline e busca aleatória. O corpus provém de quatro documentos públicos, integralmente recuperáveis:
+
+\begin{itemize}[noitemsep]
+\item Mensagem 2023: \url{https://www.gov.br/planalto/pt-br/acesso-a-informacao/acoes-e-programas/governanca/mensagem-ao-congresso-nacional/MensagemaoCongressoNacional2023.pdf}
+\item Mensagem 2024: \url{https://www.gov.br/planalto/pt-br/acesso-a-informacao/acoes-e-programas/governanca/mensagem-ao-congresso-nacional/mensagemaocongressonacional2024_vf.pdf}
+\item Mensagem 2025: \url{https://www.gov.br/planalto/pt-br/acesso-a-informacao/acoes-e-programas/governanca/mensagem-ao-congresso-nacional/mcn2025digitalv1.pdf}
+\item Mensagem 2026: \url{https://www.gov.br/casacivil/pt-br/.arquivos/mensagem-ao-congresso-nacional-2026.pdf}
+\end{itemize}
+
+O arquivo oficial de 2025 é publicado como \path{mcn2025digitalv1.pdf}; o notebook o referencia como \path{MensagemCongressoNacional2025.pdf}, e a renomeação está documentada no repositório.
+
+O código completo do pipeline (extração, limpeza, rotulagem, vetorização, classificação, otimização, avaliação e teste de circularidade) é disponibilizado em notebook executável, com as versões das bibliotecas explicitadas. Todas as figuras e tabelas do artigo são geradas pelo notebook, a partir das mesmas sementes, e os dados intermediários e finais (corpus rotulado, métricas por classe, matriz de confusão, proporções anuais com denominadores, vetores das 30 execuções, 180 medidas do teste de circularidade) são exportados em formato aberto. O repositório é \url{https://github.com/ferdinandrafols/Mensagens-ao-Congresso-Nacional-2023-2026-}; um depósito com identificador persistente está previsto para a versão final.
+
+\paragraph{Execução de registro com sentinelas} A execução de referência em parágrafo foi certificada por um procedimento de registro: 15 grandezas (sentinelas) foram declaradas antes da execução, com os valores esperados da execução de 19 de agosto de 2026, e a execução de 20 de outubro de 2026 as reproduziu todas, com diferença máxima zero nos 60 valores das 30 execuções de AG e baseline, em ambiente com versões diferentes de Python, numpy e pandas. O certificado (valores esperados e obtidos, versões e hash do corpus) acompanha os artefatos, assim como o certificado de página, emitido durante a revisão sobre a unidade de análise da versão submetida. As seis grandezas que dependem do orçamento pareado da busca aleatória foram registradas como referência nova.
+
+\paragraph{Artefatos do conjunto-ouro} O protocolo de anotação (amostra, instrumento, regras, medidas e regra de decisão de H6, com as datas de cada versão), o gerador do instrumento, as planilhas dos dois pilotos e da amostra principal tal como devolvidas pelos anotadores, a planilha do terceiro voto cego, as planilhas das duas rodadas de reconciliação escrita tal como enviadas e devolvidas (inclusive uma devolução sem justificativas que a regra invalidou e foi reenviada), o conjunto-ouro adjudicado com a origem de cada rótulo, os scripts de medida e o script do experimento complementar de treino no ouro acompanham os artefatos. As alterações de regra entre os pilotos e a principal estão datadas; nenhuma regra mudou durante a amostra principal.
+
+%----------------------------------------------------------------------------------------
+\section{Considerações finais e trabalhos futuros}
+\label{sec:conclusao}
+
+Este trabalho apresentou um pipeline reprodutível de categorização semântica supervisionada de documentos governamentais, demonstrado sobre as Mensagens Presidenciais ao Congresso Nacional do Brasil (2023--2026), e mediu o que a sua métrica de avaliação significa. Contra os rótulos do léxico que o treinou, o SVM linear alcança F1-macro de 0,921 (0,913 $\pm$ 0,003 em validação aninhada); a otimização de hiperparâmetros produz ganho material sobre a configuração-padrão, e a estratégia evolutiva supera a busca aleatória de orçamento pareado por uma diferença pequena. Contra um conjunto-ouro anotado por dois leitores externos, o mesmo classificador alcança 0,579 [0,536; 0,616], e o teste de circularidade mostra que a métrica contra o léxico é, em grande parte, detecção dos termos que definiram o rótulo. O resíduo do léxico, 41\% do corpus, recebe uma classe temática dos leitores em 79 dos 82 casos adjudicados.
+
+A consequência para o enunciado inicial é direta: o pipeline é reprodutível e auditável, e a categorização semântica que entrega é limitada pelo léxico que o supervisiona. A hipótese H6, que a versão submetida refutava, é confirmada quando a referência é independente, com o alcance que a Seção 6.7 delimita: o limite demonstrado é o da supervisão por léxico. O resultado desloca o problema para a rotulagem: melhorar o classificador sobre os mesmos rótulos não aproxima o pipeline da leitura humana, enquanto o classificador apenas reproduzir o léxico. No estado atual, o que o pipeline entrega com validade medida é a composição do léxico aplicado ao corpus; medir a agenda governamental exige rotulagem humana, ou um classificador validado contra ela.
+
+Como trabalhos futuros, destacam-se quatro direções. A primeira é ampliar o conjunto-ouro até que o treino com rótulos humanos saia da região não saturada da curva de aprendizado, o que decidiria H6 para o paradigma, e rever a definição operacional das classes de fronteira difusa (governança, economia, programas sociais) antes de rotular. A segunda é corrigir a segmentação na quebra de página e a interpolação do cabeçalho corrido antes da rotulagem. A terceira é a validação do pipeline sobre outros corpora governamentais. A quarta decorre do que este artigo deixa pronto: o conjunto-ouro e a baseline clássica medida contra ele são a referência com a qual abordagens de outra natureza, em particular modelos de linguagem e arquiteturas baseadas em agentes, podem ser comparadas neste corpus sob a mesma régua humana, com o custo da circularidade já conhecido; a ampliação do espaço de busca da otimização, condição sob a qual a vantagem de metaheurísticas sobre a busca aleatória poderia se manifestar, passa a ser secundária.
+
+%----------------------------------------------------------------------------------------
+\section*{Agradecimentos}
+Os autores agradecem a Luiza Londe (doutoranda em Sociologia pela Universidade de São Paulo) e a João Pedro Marinho Rodrigues (mestrando em Ciências Sociais pela Universidade Federal de Uberlândia), pela anotação independente do conjunto-ouro e pela reconciliação escrita dos itens divergentes, e ao Prof. Dr. Moacir de Freitas Junior, do Instituto de Ciências Sociais da Universidade Federal de Uberlândia, pela indicação dos anotadores.
+
+\section*{Contribuição dos Autores}
+Os papéis seguem a taxonomia CRediT. Ferdinand Rafols: Conceituação, Metodologia, Software, Análise formal, Investigação, Curadoria de dados, Visualização, Escrita (rascunho original), Escrita (revisão e edição). Márcio José da Cunha: Supervisão, Escrita (revisão e edição). Danielli Araújo Lima: Conceituação, Metodologia, Validação, Supervisão. Keiji Yamanaka: Metodologia. Alexandre Cardoso: Metodologia.
+
+\section*{Declaração de Conflito de Interesses}
+Os autores declaram que não há conflitos de interesses, de natureza pessoal, comercial, acadêmica ou institucional, que possam ter influenciado a elaboração ou os resultados deste trabalho.
+
+\section*{Declaração de Uso de IA na Escrita}
+Na preparação deste manuscrito, o autor utilizou o assistente de inteligência artificial Claude (Anthropic) para: aprimoramento de redação, clareza e formatação do texto; organização de tabelas; apoio à implementação de código das análises estatísticas complementares (validação cruzada aninhada, teste de Wilcoxon pareado, tamanhos de efeito e teste de circularidade) e à geração das figuras correspondentes; e, nas rodadas de revisão, apoio à auditoria de extração (hifenização e unidade de análise), à conferência cruzada dos números do manuscrito, à redação do protocolo e do instrumento de anotação, ao sorteio da amostra e ao cálculo das medidas de concordância. A anotação do conjunto-ouro foi feita por dois anotadores humanos externos, com adjudicação pelo primeiro autor; a ferramenta não anotou, não gerou nem alterou dados primários. O corpus, a rotulagem, o desenho da pesquisa, as hipóteses e todos os resultados numéricos foram produzidos pela execução do próprio autor em ambiente reprodutível (Seção~\ref{sec:repro}). O autor revisou criticamente todo o conteúdo e assume responsabilidade integral pela exatidão, integridade e validade do material apresentado.
+
+%----------------------------------------------------------------------------------------
+\balance
+\bibliographystyle{abntex2-num}
+\bibliography{referencias}
+
+\end{document}

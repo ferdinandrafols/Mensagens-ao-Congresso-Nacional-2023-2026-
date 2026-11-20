@@ -1,0 +1,12 @@
+n itens: 516 | classes: {'GOV': 87, 'AMB': 67, 'EDU': 55, 'SAU': 53, 'INF': 50, 'SOC': 46, 'ECO': 43, 'RES': 41, 'AGR': 38, 'EXT': 36}
+10 códigos, 516 itens | C=0.825 | vocab corpus | F1-macro 0.635 ± 0.010 amplitude [0.616; 0.646] | acc 0.636 | IC bootstrap itens [0.595; 0.667]
+10 códigos, 516 itens | C=0.825 | vocab dobra | F1-macro 0.632 ± 0.007 amplitude [0.616; 0.642] | acc 0.636
+10 códigos, 516 itens | C=1.000 | vocab corpus | F1-macro 0.635 ± 0.009 amplitude [0.620; 0.644] | acc 0.636
+10 códigos, 516 itens | C=1.000 | vocab dobra | F1-macro 0.632 ± 0.008 amplitude [0.619; 0.640] | acc 0.636
+9 classes, 475 itens | C=0.825 | vocab corpus | F1-macro 0.661 ± 0.010 amplitude [0.643; 0.683] | acc 0.659 | IC bootstrap itens [0.624; 0.693]
+9 classes, 475 itens | C=0.825 | vocab dobra | F1-macro 0.666 ± 0.014 amplitude [0.643; 0.697] | acc 0.668
+9 classes, 475 itens | C=1.000 | vocab corpus | F1-macro 0.662 ± 0.009 amplitude [0.643; 0.676] | acc 0.660
+9 classes, 475 itens | C=1.000 | vocab dobra | F1-macro 0.665 ± 0.014 amplitude [0.637; 0.691] | acc 0.666
+referência: alvo = rótulo do léxico, 434 itens rotulados | F1 0.708 ± 0.010 | acc 0.716
+curva: 50% dos itens | F1 0.554 ± 0.042
+curva: 75% dos itens | F1 0.598 ± 0.021

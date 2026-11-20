@@ -1,0 +1,20 @@
+{
+  "unidade": "pagina",
+  "n_unidades_brutas": 2089,
+  "unidades_por_pagina": 0.997,
+  "palavras_por_unidade_mediana": 357.0,
+  "n_limpo": 1943,
+  "n_treinamento": 1518,
+  "n_residual": 425,
+  "f1_melhor": 0.817,
+  "f1_baseline": 0.726,
+  "f1_aninhada": 0.8128,
+  "dp_aninhada": 0.02,
+  "f1_holdout": 0.8153,
+  "f1_svm": 0.817,
+  "f1_lr": 0.7944,
+  "f1_rf": 0.7616,
+  "p_ag_rs": 0.118326,
+  "runs_ag_media": 0.802,
+  "runs_rs_media": 0.8016
+}

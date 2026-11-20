@@ -1,0 +1,15 @@
+{
+  "unidade": "paragrafo",
+  "n_unidades_brutas": 11005,
+  "unidades_por_pagina": 5.253,
+  "palavras_por_unidade_mediana": 56.0,
+  "n_limpo": 10757,
+  "n_treinamento": 6370,
+  "n_residual": 4387,
+  "f1_melhor": null,
+  "f1_baseline": 0.8534,
+  "f1_aninhada": null,
+  "dp_aninhada": null,
+  "runs_ag_media": 0.9169,
+  "runs_rs_media": 0.9148
+}

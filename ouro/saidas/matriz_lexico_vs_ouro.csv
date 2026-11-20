@@ -1,0 +1,11 @@
+,lex_ECO,lex_SOC,lex_SAU,lex_EDU,lex_AGR,lex_EXT,lex_INF,lex_AMB,lex_GOV,lex_RES
+ouro_ECO,18,4,1,0,0,2,4,2,2,10
+ouro_SOC,5,21,1,0,5,2,2,0,1,9
+ouro_SAU,0,0,43,2,0,0,1,0,2,5
+ouro_EDU,1,0,0,40,2,1,0,1,1,9
+ouro_AGR,2,3,0,0,25,1,0,1,2,4
+ouro_EXT,2,1,0,1,3,23,0,2,1,3
+ouro_INF,2,1,0,0,1,3,32,1,1,9
+ouro_AMB,2,1,0,2,2,3,4,36,4,13
+ouro_GOV,8,11,2,2,4,8,1,5,29,17
+ouro_RES,3,5,2,2,7,6,5,2,6,3

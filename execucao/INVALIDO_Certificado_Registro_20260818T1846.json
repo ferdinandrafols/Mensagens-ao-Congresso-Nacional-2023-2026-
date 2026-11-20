@@ -1,0 +1,38 @@
+{
+  "timestamp_utc": "2026-08-18T18:46:05.318141+00:00",
+  "veredito": "APROVADA COM RESSALVAS — 20 itens não verificáveis",
+  "sentinelas_esperadas": {},
+  "obtidos": {
+    "remontagens": null,
+    "residuo": null,
+    "vocabulario": null,
+    "paragrafos_limpos": null,
+    "treinamento": null,
+    "residual_v3": null,
+    "ag_max_features": null,
+    "ag_ngram": null,
+    "ag_sublinear": null,
+    "ag_C": null,
+    "f1_baseline_unico": null,
+    "runs_ag_media": null,
+    "runs_bl_media": null,
+    "runs_rs_media": null,
+    "W_ag_bl": null,
+    "W_ag_rs": null,
+    "p_ag_rs": null,
+    "r_ag_bl": null,
+    "r_ag_rs": null,
+    "vitorias_ag_rs": null
+  },
+  "diff_checkpoints": "REPRODUÇÃO EXATA (Δmax = 0)",
+  "corpus_sha256_16": "4f5eb96bc3dee5ca",
+  "versoes": {
+    "python": "3.12.13",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.16.3",
+    "numpy": "2.0.2",
+    "pandas": "2.2.2",
+    "matplotlib": "3.10.0"
+  },
+  "seed": 42
+}

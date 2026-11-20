@@ -1,0 +1,97 @@
+{
+  "n_itens": 540,
+  "origem_do_ouro": {
+    "acordo_direto": 343,
+    "maioria_voto_cego": 153,
+    "reconciliacao_escrita": 20,
+    "sem_consenso": 14,
+    "excluido_NC": 10
+  },
+  "n_ouro": 516,
+  "taxa_desempate": {
+    "maioria_voto_cego": 0.2833,
+    "sem_maioria": 0.0
+  },
+  "voto3": {
+    "n_desempatados": 187,
+    "coincide_a1": 100,
+    "coincide_a2": 53,
+    "kappa_voto3_a1": 0.4739,
+    "kappa_voto3_a2": 0.1863,
+    "nc_voto3": 1
+  },
+  "kappa_externo_lexico": {
+    "a1": 0.552,
+    "a2": 0.4951,
+    "n": 444
+  },
+  "residuo": {
+    "n_residuo_no_ouro": 82,
+    "recebe_classe": 79,
+    "distribuicao_ouro": {
+      "GOV": 17,
+      "AMB": 13,
+      "ECO": 10,
+      "SOC": 9,
+      "EDU": 9,
+      "INF": 9,
+      "SAU": 5,
+      "AGR": 4,
+      "RES": 3,
+      "EXT": 3
+    }
+  },
+  "metricas": {
+    "svm_vs_ouro_rotulados_10": {
+      "f1": 0.579,
+      "ic_lo": 0.5357,
+      "ic_hi": 0.616,
+      "n": 434,
+      "acuracia": 0.6175
+    },
+    "svm_vs_ouro_rotulados_9": {
+      "f1": 0.6725,
+      "ic_lo": 0.6271,
+      "ic_hi": 0.7132,
+      "n": 396
+    },
+    "lexico_vs_ouro_todos_10": {
+      "f1": 0.5336,
+      "ic_lo": 0.4927,
+      "ic_hi": 0.5686,
+      "n": 516,
+      "acuracia": 0.5233
+    },
+    "svm_vs_ouro_acordo_direto_10": {
+      "f1": 0.6488,
+      "ic_lo": 0.5997,
+      "ic_hi": 0.6909,
+      "n": 299
+    },
+    "svm_vs_ouro_limpos_10": {
+      "f1": 0.5686,
+      "ic_lo": 0.5221,
+      "ic_hi": 0.6093,
+      "n": 351
+    },
+    "acuracia_lexico_vs_ouro_ponderada_corpus": 0.3762,
+    "H6": {
+      "regra": "F1-macro SVM OOF x ouro, 10 códigos, limiar 0,75",
+      "veredito": "confirmada"
+    },
+    "f1_cv_lexico_reproduzido": 0.9202
+  },
+  "distribuicao_ouro": {
+    "GOV": 87,
+    "AMB": 67,
+    "EDU": 55,
+    "SAU": 53,
+    "INF": 50,
+    "SOC": 46,
+    "ECO": 43,
+    "RES": 41,
+    "AGR": 38,
+    "EXT": 36
+  },
+  "n_ruido_no_ouro_rotulado": 83
+}

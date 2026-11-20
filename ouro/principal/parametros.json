@@ -1,0 +1,14 @@
+{
+  "seed": 42,
+  "corpus": "corpus_v3_paragrafo.csv",
+  "corpus_sha256_16": "e7f15cef91f89d26",
+  "n_corpus": 10757,
+  "n_quadro": 10379,
+  "fragmentos_excluidos": 378,
+  "min_palavras": 15,
+  "n_piloto": 50,
+  "n_principal": 540,
+  "n_principal_rotulados": 450,
+  "n_principal_residuo": 90,
+  "min_por_celula": 5
+}
